@@ -16,6 +16,7 @@ import javax.swing.JFileChooser;
 
 import com.csvreader.CsvReader;
 import java.io.IOException;
+import java.util.ArrayList;
 /**
  *
  * @author Danial
@@ -198,7 +199,6 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void openFileExplorerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openFileExplorerButtonMouseClicked
         // TODO add your handling code here:
-        System.out.println("Hsdfjsdf"); 
         int returnVal = FileExplorer.showOpenDialog(NewJFrame.this); 
         
         if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -293,18 +293,31 @@ public class NewJFrame extends javax.swing.JFrame {
     }
     
     public void readFile() {
+        
+        int headerCount = 0; 
+        ArrayList<String> headers = new ArrayList<String>(); 
+        
         try {
             CsvReader reader = new CsvReader(new FileReader(this.openedFile));
-            reader.readHeaders();
             System.out.println("Reading headers..."); 
-            System.out.println(reader.getHeaderCount());
+            reader.readHeaders();
+            headerCount = reader.getColumnCount();
+            System.out.println(headerCount); 
+            for (int i = 0; i < headerCount; i++) {
+                headers.add(reader.get(i)); 
+                System.out.println(headers.get(i)); 
+            }
             System.out.println("Completed"); 
+            
+            
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+       
     }
    
 
