@@ -1,0 +1,2 @@
+# SeniorProjectDataMining
+Data Mining application 
