@@ -17,6 +17,11 @@ import javax.swing.JFileChooser;
 import com.csvreader.CsvReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 /**
  *
  * @author Danial
@@ -92,13 +97,20 @@ public class NewJFrame extends javax.swing.JFrame {
 
         dataTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
             }
         ));
         jScrollPane1.setViewportView(dataTable);
@@ -295,21 +307,19 @@ public class NewJFrame extends javax.swing.JFrame {
     public void readFile() {
         
         int headerCount = 0; 
-        ArrayList<String> headers = new ArrayList<String>(); 
+        String[] headers = null;
         
         try {
             CsvReader reader = new CsvReader(new FileReader(this.openedFile));
             System.out.println("Reading headers..."); 
             reader.readHeaders();
-            headerCount = reader.getColumnCount();
-            System.out.println(headerCount); 
-            for (int i = 0; i < headerCount; i++) {
-                headers.add(reader.get(i)); 
-                System.out.println(headers.get(i)); 
+            headerCount = reader.getHeaderCount();
+            headers = reader.getHeaders();
+            
+            
+            for (int i = 0; i < headers.length; i++) {
+                System.out.println(headers[i]); 
             }
-            System.out.println("Completed"); 
-            
-            
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -317,7 +327,17 @@ public class NewJFrame extends javax.swing.JFrame {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-       
+        
+        System.out.println("Headers updating ..."); 
+        updateHeaders(headers); 
+    }
+    
+    public void updateHeaders(String[] headers) {
+        for (int i = 0; i < 5; i++) {
+            dataTable.getColumnModel().getColumn(i).setHeaderValue(headers[i]);
+        }
+         
+        System.out.println("Headers updated"); 
     }
    
 
