@@ -8,6 +8,7 @@ package app;
 import com.opencsv.CSVReader;
 import java.awt.List;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -232,8 +234,11 @@ public class JTableTut extends javax.swing.JFrame {
     }//GEN-LAST:event_selectFileActionPerformed
 
     private void browseFileExplorerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseFileExplorerButtonActionPerformed
-        int returnVal = fileExplorer.showOpenDialog(JTableTut.this); 
+        fileExplorer.addChoosableFileFilter(new FileNameExtensionFilter("CSV Files", "csv"));
+        fileExplorer.setAcceptAllFileFilterUsed(true);
         
+        int returnVal = fileExplorer.showOpenDialog(JTableTut.this); 
+        //TODO: Verify for only a .csv file
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             openedFile = fileExplorer.getSelectedFile();
             fileNameTextField.setText(openedFile.getAbsolutePath()); 
@@ -254,17 +259,24 @@ public class JTableTut extends javax.swing.JFrame {
     }//GEN-LAST:event_displayButtonActionPerformed
 
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
+        int numClusters = Integer.parseInt(numClustersTextField.getText());
+        int numIterations = Integer.parseInt(numIterationsTextField.getText());
         if (!loaded) {
             generatedScalaTextArea.setText("Please select a file"); 
         }
         else {
             int colIndex = columnComboBox.getSelectedIndex(); 
-            int numClusters = Integer.parseInt(numClustersTextField.getText()); 
-            int numIterations = Integer.parseInt(numIterationsTextField.getText()); 
-            String outputFileName = outputFileTextField.getText(); 
-            
-            createFile(colIndex, outputFileName); 
-            generateScalaCode(numClusters, numIterations); 
+            if(numClusters <= 0){
+                generatedScalaTextArea.append("NUMBER OF CLUSTERS CANNOT BE 0 OR LESS.");
+            }
+            else if(numIterations <= 0){
+               generatedScalaTextArea.append("NUMBER OF ITERATIONS CANNOT BE 0 OR LESS.");
+            }
+            else{
+                String outputFileName = outputFileTextField.getText(); 
+                createFile(colIndex, outputFileName); 
+                generateScalaCode(numClusters, numIterations);
+            }
         }
     }//GEN-LAST:event_generateButtonActionPerformed
 
@@ -310,6 +322,7 @@ public class JTableTut extends javax.swing.JFrame {
         } 
         
         String[] row = null;
+        
         int rowCounter = 0; 
         
         columnTextArea.setText(""); 
@@ -336,7 +349,7 @@ public class JTableTut extends javax.swing.JFrame {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         
         //printAllData(data);
         printColumnData(header, data, 0); 
@@ -360,7 +373,6 @@ public class JTableTut extends javax.swing.JFrame {
     }
     
     public void updateComboBox(String[] header) {
-        columnComboBox.removeAllItems();
         for (String x: header) {
             columnComboBox.addItem(x.toUpperCase()); 
         }
@@ -390,13 +402,14 @@ public class JTableTut extends javax.swing.JFrame {
                 "val numIterations = " + ite + "\n" +
                 "val clusters = KMeans.train(parsedData, numClusters, numIterations)\n\n" +
                 "val WSSE = clusters.computeCost(parsedData)\n" +
-                "println(\"Within Set Sum of Squared Errors = \" + WSSE)\n" + 
+                "println(\"Within Set Sum of Squared Errors = \" + WSSE\n" + 
                 "clusters.save(sc, \"myModelPath\")\n" +
                 "val sameModel = KMeansModel.load(sc, \"myModelPath\")\n\n";
         
         generatedScalaTextArea.setText(generatedCode); 
     }
-    
+   
+       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseFileExplorerButton;

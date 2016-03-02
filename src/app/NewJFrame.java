@@ -306,14 +306,12 @@ public class NewJFrame extends javax.swing.JFrame {
     
     public void readFile() {
         
-        int headerCount = 0; 
         String[] headers = null;
         
         try {
             CsvReader reader = new CsvReader(new FileReader(this.openedFile));
             System.out.println("Reading headers..."); 
             reader.readHeaders();
-            headerCount = reader.getHeaderCount();
             headers = reader.getHeaders();
             
             
@@ -333,7 +331,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }
     
     public void updateHeaders(String[] headers) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             dataTable.getColumnModel().getColumn(i).setHeaderValue(headers[i]);
         }
          
