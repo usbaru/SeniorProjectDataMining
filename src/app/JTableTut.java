@@ -304,10 +304,13 @@ public class JTableTut extends javax.swing.JFrame {
     }
     
     public void saveData(String fileName) {
+        if (loaded == true) {
+            header = null;
+            data.clear();
+        } 
+        
         String[] row = null;
-        
         int rowCounter = 0; 
-        
         
         columnTextArea.setText(""); 
         try {
@@ -357,6 +360,7 @@ public class JTableTut extends javax.swing.JFrame {
     }
     
     public void updateComboBox(String[] header) {
+        columnComboBox.removeAllItems();
         for (String x: header) {
             columnComboBox.addItem(x.toUpperCase()); 
         }
@@ -386,7 +390,7 @@ public class JTableTut extends javax.swing.JFrame {
                 "val numIterations = " + ite + "\n" +
                 "val clusters = KMeans.train(parsedData, numClusters, numIterations)\n\n" +
                 "val WSSE = clusters.computeCost(parsedData)\n" +
-                "println(\"Within Set Sum of Squared Errors = \" + WSSE\n" + 
+                "println(\"Within Set Sum of Squared Errors = \" + WSSE)\n" + 
                 "clusters.save(sc, \"myModelPath\")\n" +
                 "val sameModel = KMeansModel.load(sc, \"myModelPath\")\n\n";
         
