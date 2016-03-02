@@ -8,6 +8,7 @@ package app;
 import com.opencsv.CSVReader;
 import java.awt.List;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -232,6 +234,9 @@ public class JTableTut extends javax.swing.JFrame {
     }//GEN-LAST:event_selectFileActionPerformed
 
     private void browseFileExplorerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseFileExplorerButtonActionPerformed
+        fileExplorer.addChoosableFileFilter(new FileNameExtensionFilter("CSV Files", "csv"));
+        fileExplorer.setAcceptAllFileFilterUsed(true);
+        
         int returnVal = fileExplorer.showOpenDialog(JTableTut.this); 
         //TODO: Verify for only a .csv file
         if (returnVal == JFileChooser.APPROVE_OPTION) {
