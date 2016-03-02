@@ -393,16 +393,17 @@ public class JTableTut extends javax.swing.JFrame {
     
     public void generateScalaCode(int clu, int ite) {
         String generatedCode; 
+        String path = outputFile.getAbsolutePath().replaceAll("\\\\", "/");
         
         generatedCode = "import org.apache.spark.mllib.clustering.{KMeans, KMeansModel}\n" +
                 "\nimport org.apache.spark.mllib.linalg.Vectors\n\n" +
-                "val data = sc.textFile(" + outputFile.getAbsolutePath() + ")\n" +
+                "val data = sc.textFile(\"" + path + "\")\n" +
                 "val parsedData = data.map(s => Vectors.dense(s.split(' ').map(_.toDouble))).cache()\n\n" +
                 "val numClusters = " + clu + "\n" +
                 "val numIterations = " + ite + "\n" +
                 "val clusters = KMeans.train(parsedData, numClusters, numIterations)\n\n" +
                 "val WSSE = clusters.computeCost(parsedData)\n" +
-                "println(\"Within Set Sum of Squared Errors = \" + WSSE\n" + 
+                "println(\"Within Set Sum of Squared Errors = \" + WSSE)\n" + 
                 "clusters.save(sc, \"myModelPath\")\n" +
                 "val sameModel = KMeansModel.load(sc, \"myModelPath\")\n\n";
         
