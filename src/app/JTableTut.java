@@ -254,18 +254,24 @@ public class JTableTut extends javax.swing.JFrame {
     }//GEN-LAST:event_displayButtonActionPerformed
 
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
+        int numClusters = Integer.parseInt(numClustersTextField.getText());
+        int numIterations = Integer.parseInt(numIterationsTextField.getText());
         if (!loaded) {
             generatedScalaTextArea.setText("Please select a file"); 
         }
         else {
             int colIndex = columnComboBox.getSelectedIndex(); 
-            //TODO: Add error checking to these
-            int numClusters = getClusters(); 
-            int numIterations = getIterations(); 
-            String outputFileName = outputFileTextField.getText(); 
-            
-            createFile(colIndex, outputFileName); 
-            generateScalaCode(numClusters, numIterations); 
+            if(numClusters <= 0){
+                generatedScalaTextArea.append("NUMBER OF CLUSTERS CANNOT BE 0 OR LESS.");
+            }
+            else if(numIterations <= 0){
+               generatedScalaTextArea.append("NUMBER OF ITERATIONS CANNOT BE 0 OR LESS.");
+            }
+            else{
+                String outputFileName = outputFileTextField.getText(); 
+                createFile(colIndex, outputFileName); 
+                generateScalaCode(numClusters, numIterations);
+            }
         }
     }//GEN-LAST:event_generateButtonActionPerformed
 
@@ -393,28 +399,8 @@ public class JTableTut extends javax.swing.JFrame {
         
         generatedScalaTextArea.setText(generatedCode); 
     }
-    
-    public int getClusters(){
-       int clusters = Integer.parseInt(numClustersTextField.getText());
-       if(clusters <= 0){
-           return clusters;
-       }
-       else{
-           generatedScalaTextArea.append("NUMBER OF CLUSTERS CANNOT BE 0 OR FEWER!");
-       }
-       return -1;
-    }
-    
-    public int getIterations(){
-       int clusters = Integer.parseInt(numClustersTextField.getText());
-       if(clusters <= 0){
-           return clusters;
-       }
-       else{
-           generatedScalaTextArea.append("NUMBER OF ITERATIONS CANNOT BE 0 OR FEWER!");
-       }
-       return -1;
-    }
+   
+       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseFileExplorerButton;
