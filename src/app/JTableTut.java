@@ -233,7 +233,7 @@ public class JTableTut extends javax.swing.JFrame {
 
     private void browseFileExplorerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseFileExplorerButtonActionPerformed
         int returnVal = fileExplorer.showOpenDialog(JTableTut.this); 
-        
+        //TODO: Verify for only a .csv file
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             openedFile = fileExplorer.getSelectedFile();
             fileNameTextField.setText(openedFile.getAbsolutePath()); 
@@ -259,8 +259,9 @@ public class JTableTut extends javax.swing.JFrame {
         }
         else {
             int colIndex = columnComboBox.getSelectedIndex(); 
-            int numClusters = Integer.parseInt(numClustersTextField.getText()); 
-            int numIterations = Integer.parseInt(numIterationsTextField.getText()); 
+            //TODO: Add error checking to these
+            int numClusters = getClusters(); 
+            int numIterations = getIterations(); 
             String outputFileName = outputFileTextField.getText(); 
             
             createFile(colIndex, outputFileName); 
@@ -393,6 +394,27 @@ public class JTableTut extends javax.swing.JFrame {
         generatedScalaTextArea.setText(generatedCode); 
     }
     
+    public int getClusters(){
+       int clusters = Integer.parseInt(numClustersTextField.getText());
+       if(clusters <= 0){
+           return clusters;
+       }
+       else{
+           generatedScalaTextArea.append("NUMBER OF CLUSTERS CANNOT BE 0 OR FEWER!");
+       }
+       return -1;
+    }
+    
+    public int getIterations(){
+       int clusters = Integer.parseInt(numClustersTextField.getText());
+       if(clusters <= 0){
+           return clusters;
+       }
+       else{
+           generatedScalaTextArea.append("NUMBER OF ITERATIONS CANNOT BE 0 OR FEWER!");
+       }
+       return -1;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseFileExplorerButton;
