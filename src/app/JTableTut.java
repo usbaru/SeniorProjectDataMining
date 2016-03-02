@@ -315,7 +315,6 @@ public class JTableTut extends javax.swing.JFrame {
         
         int rowCounter = 0; 
         
-        
         columnTextArea.setText(""); 
         try {
             CSVReader reader = new CSVReader(new FileReader(fileName)); 
@@ -338,9 +337,7 @@ public class JTableTut extends javax.swing.JFrame {
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         
         //printAllData(data);
         printColumnData(header, data, 0); 
