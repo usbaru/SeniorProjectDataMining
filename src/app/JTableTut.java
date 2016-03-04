@@ -58,7 +58,7 @@ public class JTableTut extends javax.swing.JFrame {
         selectFile = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         columnTextArea = new javax.swing.JTextArea();
-        columnComboBox = new javax.swing.JComboBox<String>();
+        columnComboBox = new javax.swing.JComboBox<>();
         displayButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -82,6 +82,7 @@ public class JTableTut extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        fileNameTextField.setEditable(false);
         fileNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fileNameTextFieldActionPerformed(evt);

@@ -83,7 +83,7 @@
                                               <Component id="displayButton" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="630" pref="630" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="630" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -127,6 +127,9 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JTextField" name="fileNameTextField">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fileNameTextFieldActionPerformed"/>
               </Events>
