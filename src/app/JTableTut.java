@@ -60,10 +60,11 @@ public class JTableTut extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         fileExplorer = new javax.swing.JFileChooser();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
+        parentTabPane = new javax.swing.JTabbedPane();
+        sourceTab = new javax.swing.JPanel();
         fileNameTextField = new javax.swing.JTextField();
         browseFileExplorerButton = new javax.swing.JButton();
         selectFile = new javax.swing.JButton();
@@ -76,23 +77,33 @@ public class JTableTut extends javax.swing.JFrame {
                 return false;
             };
         };
-        RemoveBut = new javax.swing.JButton();
-        RemoveColTF = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jWorkingTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        algorithmTab = new javax.swing.JPanel();
+        algTabPane = new javax.swing.JTabbedPane();
+        supervisedTab = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        selectLabel = new javax.swing.JLabel();
+        superList = new javax.swing.JComboBox<>();
+        cardStack = new javax.swing.JPanel();
+        kmeansPanel = new javax.swing.JPanel();
+        configLabel = new javax.swing.JLabel();
+        clusterLabel = new javax.swing.JLabel();
+        iterLabel = new javax.swing.JLabel();
         numClustersTextField = new javax.swing.JTextField();
         numIterationsTextField = new javax.swing.JTextField();
         generateButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        outputLabel = new javax.swing.JLabel();
         outputFileTextField = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
+        unsupervisedTab = new javax.swing.JPanel();
+        codeTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         generatedScalaTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         fileNameTextField.setEditable(false);
         fileNameTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -128,96 +139,110 @@ public class JTableTut extends javax.swing.JFrame {
             data,
             headerVec
         ));
-        csvTable.setColumnSelectionAllowed(true);
-        csvTable.setRowSelectionAllowed(false);
         csvTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane3.setViewportView(csvTable);
 
-        RemoveBut.setText("Remove");
-        RemoveBut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RemoveButActionPerformed(evt);
-            }
-        });
+        jWorkingTable.setModel(new javax.swing.table.DefaultTableModel(
+            data,
+            headerVec
+        ));
+        jScrollPane2.setViewportView(jWorkingTable);
 
-        jLabel6.setText("Remove Columns");
+        jButton1.setText("Add Selected Rows");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+        jButton2.setText("Remove Selected Rows");
+
+        javax.swing.GroupLayout sourceTabLayout = new javax.swing.GroupLayout(sourceTab);
+        sourceTab.setLayout(sourceTabLayout);
+        sourceTabLayout.setHorizontalGroup(
+            sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sourceTabLayout.createSequentialGroup()
+                .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(sourceTabLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(sourceTabLayout.createSequentialGroup()
                                 .addComponent(browseFileExplorerButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(sourceTabLayout.createSequentialGroup()
                                 .addGap(677, 677, 677)
                                 .addComponent(selectFile)))
-                        .addGap(110, 110, 110))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(314, 314, 314))
+                    .addGroup(sourceTabLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane3)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
+                        .addComponent(jScrollPane3)
+                        .addGap(18, 18, 18)
+                        .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addGap(18, 18, 18)
+                .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(sourceTabLayout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(24, 24, 24)
+                        .addGap(18, 18, 18)
                         .addComponent(columnComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(displayButton))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(RemoveBut)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RemoveColTF, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jLabel6)))
-                .addContainerGap(295, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(displayButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+        sourceTabLayout.setVerticalGroup(
+            sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sourceTabLayout.createSequentialGroup()
+                .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(sourceTabLayout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(browseFileExplorerButton)
                             .addComponent(selectFile)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sourceTabLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(displayButton)
                             .addComponent(columnComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, sourceTabLayout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(jButton1)
+                        .addGap(77, 77, 77)
+                        .addComponent(jButton2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, sourceTabLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(RemoveBut)
-                            .addComponent(RemoveColTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Source and Datasets", jPanel2);
+        parentTabPane.addTab("Source and Datasets", sourceTab);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Configurations");
+        jLabel1.setText("Enter desired configurations:");
 
-        jLabel2.setText("Clusters:");
+        selectLabel.setText("Select an algorithm:");
 
-        jLabel3.setText("Iterations:");
+        superList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "K-Means", "Test Algorithm 2", "Test Algorithm 3" }));
+        superList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                superListActionPerformed(evt);
+            }
+        });
+
+        cardStack.setPreferredSize(new java.awt.Dimension(400, 450));
+        cardStack.setLayout(new java.awt.CardLayout());
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, cardStack, org.jdesktop.beansbinding.ObjectProperty.create(), kmeansPanel, org.jdesktop.beansbinding.BeanProperty.create("background"));
+        bindingGroup.addBinding(binding);
+
+        configLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        configLabel.setText("Configurations");
+
+        clusterLabel.setText("Clusters:");
+
+        iterLabel.setText("Iterations:");
 
         generateButton.setText("Generate");
         generateButton.addActionListener(new java.awt.event.ActionListener() {
@@ -226,89 +251,151 @@ public class JTableTut extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Output File:");
+        outputLabel.setText("Output File:");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(375, 375, 375)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+        javax.swing.GroupLayout kmeansPanelLayout = new javax.swing.GroupLayout(kmeansPanel);
+        kmeansPanel.setLayout(kmeansPanelLayout);
+        kmeansPanelLayout.setHorizontalGroup(
+            kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kmeansPanelLayout.createSequentialGroup()
+                .addComponent(configLabel)
+                .addGap(0, 219, Short.MAX_VALUE))
+            .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kmeansPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(generateButton)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel5))
+                        .addGroup(kmeansPanelLayout.createSequentialGroup()
+                            .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(clusterLabel)
+                                .addComponent(iterLabel)
+                                .addComponent(outputLabel))
                             .addGap(36, 36, 36)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(outputFileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(numIterationsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(numClustersTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(1011, Short.MAX_VALUE))
+                                .addComponent(numClustersTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jLabel1)
-                .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(numClustersTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(numIterationsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(outputFileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(generateButton)
-                .addContainerGap(392, Short.MAX_VALUE))
+        kmeansPanelLayout.setVerticalGroup(
+            kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kmeansPanelLayout.createSequentialGroup()
+                .addComponent(configLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 413, Short.MAX_VALUE))
+            .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kmeansPanelLayout.createSequentialGroup()
+                    .addGap(94, 94, 94)
+                    .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(clusterLabel)
+                        .addComponent(numClustersTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(41, 41, 41)
+                    .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(iterLabel)
+                        .addComponent(numIterationsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(34, 34, 34)
+                    .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(outputLabel)
+                        .addComponent(outputFileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(33, 33, 33)
+                    .addComponent(generateButton)
+                    .addContainerGap(153, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("Algorithm Selection and Configurations", jPanel1);
+        cardStack.add(kmeansPanel, "kmeansCard");
+
+        javax.swing.GroupLayout supervisedTabLayout = new javax.swing.GroupLayout(supervisedTab);
+        supervisedTab.setLayout(supervisedTabLayout);
+        supervisedTabLayout.setHorizontalGroup(
+            supervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(supervisedTabLayout.createSequentialGroup()
+                .addContainerGap(447, Short.MAX_VALUE)
+                .addComponent(selectLabel)
+                .addGap(18, 18, 18)
+                .addComponent(superList, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(205, 205, 205)
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
+                .addComponent(cardStack, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(369, 369, 369))
+        );
+        supervisedTabLayout.setVerticalGroup(
+            supervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(supervisedTabLayout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addGroup(supervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cardStack, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(supervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(selectLabel)
+                        .addComponent(superList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)))
+                .addContainerGap(173, Short.MAX_VALUE))
+        );
+
+        algTabPane.addTab("Supervised Algorithms", supervisedTab);
+
+        javax.swing.GroupLayout unsupervisedTabLayout = new javax.swing.GroupLayout(unsupervisedTab);
+        unsupervisedTab.setLayout(unsupervisedTabLayout);
+        unsupervisedTabLayout.setHorizontalGroup(
+            unsupervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        unsupervisedTabLayout.setVerticalGroup(
+            unsupervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        algTabPane.addTab("Unsupervised Algorithms", unsupervisedTab);
+
+        javax.swing.GroupLayout algorithmTabLayout = new javax.swing.GroupLayout(algorithmTab);
+        algorithmTab.setLayout(algorithmTabLayout);
+        algorithmTabLayout.setHorizontalGroup(
+            algorithmTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(algTabPane)
+        );
+        algorithmTabLayout.setVerticalGroup(
+            algorithmTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(algTabPane)
+        );
+
+        parentTabPane.addTab("Algorithm Selection and Configurations", algorithmTab);
 
         generatedScalaTextArea.setColumns(20);
         generatedScalaTextArea.setRows(5);
         jScrollPane1.setViewportView(generatedScalaTextArea);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(192, Short.MAX_VALUE)
+        javax.swing.GroupLayout codeTabLayout = new javax.swing.GroupLayout(codeTab);
+        codeTab.setLayout(codeTabLayout);
+        codeTabLayout.setHorizontalGroup(
+            codeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, codeTabLayout.createSequentialGroup()
+                .addContainerGap(290, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(265, 265, 265))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        codeTabLayout.setVerticalGroup(
+            codeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(codeTabLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Generated Code", jPanel3);
+        parentTabPane.addTab("Generated Code", codeTab);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(parentTabPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1))
+                .addComponent(parentTabPane))
         );
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -324,28 +411,6 @@ public class JTableTut extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_displayButtonActionPerformed
-
-    private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
-        int numClusters = Integer.parseInt(numClustersTextField.getText());
-        int numIterations = Integer.parseInt(numIterationsTextField.getText());
-        if (!loaded) {
-            generatedScalaTextArea.setText("Please select a file");
-        }
-        else {
-            int colIndex = columnComboBox.getSelectedIndex();
-            if(numClusters <= 0){
-                generatedScalaTextArea.append("NUMBER OF CLUSTERS CANNOT BE 0 OR LESS.");
-            }
-            else if(numIterations <= 0){
-                generatedScalaTextArea.append("NUMBER OF ITERATIONS CANNOT BE 0 OR LESS.");
-            }
-            else{
-                String outputFileName = outputFileTextField.getText();
-                createFile(colIndex, outputFileName);
-                generateScalaCode(numClusters, numIterations);
-            }
-        }
-    }//GEN-LAST:event_generateButtonActionPerformed
 
     private void browseFileExplorerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseFileExplorerButtonActionPerformed
         //fileExplorer.addChoosableFileFilter(new FileNameExtensionFilter("CSV Files", "csv"));
@@ -387,6 +452,32 @@ public class JTableTut extends javax.swing.JFrame {
        TableColumnModel columnModel = csvTable.getColumnModel();
        csvTable.removeColumn(csvTable.getColumnModel().getColumn(i));
     }//GEN-LAST:event_RemoveButActionPerformed
+
+    private void superListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_superListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_superListActionPerformed
+
+    private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
+        int numClusters = Integer.parseInt(numClustersTextField.getText());
+        int numIterations = Integer.parseInt(numIterationsTextField.getText());
+        if (!loaded) {
+            generatedScalaTextArea.setText("Please select a file");
+        }
+        else {
+            int colIndex = columnComboBox.getSelectedIndex();
+            if(numClusters <= 0){
+                generatedScalaTextArea.append("NUMBER OF CLUSTERS CANNOT BE 0 OR LESS.");
+            }
+            else if(numIterations <= 0){
+                generatedScalaTextArea.append("NUMBER OF ITERATIONS CANNOT BE 0 OR LESS.");
+            }
+            else{
+                String outputFileName = outputFileTextField.getText();
+                createFile(colIndex, outputFileName);
+                generateScalaCode(numClusters, numIterations);
+            }
+        }
+    }//GEN-LAST:event_generateButtonActionPerformed
 	
     /**
      * @param args the command line arguments
@@ -514,32 +605,42 @@ public class JTableTut extends javax.swing.JFrame {
        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton RemoveBut;
-    private javax.swing.JTextField RemoveColTF;
+    private javax.swing.JTabbedPane algTabPane;
+    private javax.swing.JPanel algorithmTab;
     private javax.swing.JButton browseFileExplorerButton;
+    private javax.swing.JPanel cardStack;
+    private javax.swing.JLabel clusterLabel;
+    private javax.swing.JPanel codeTab;
     private javax.swing.JComboBox<String> columnComboBox;
+    private javax.swing.JLabel configLabel;
     private javax.swing.JTable csvTable;
     private javax.swing.JButton displayButton;
     private javax.swing.JFileChooser fileExplorer;
     private javax.swing.JTextField fileNameTextField;
     private javax.swing.JButton generateButton;
     private javax.swing.JTextArea generatedScalaTextArea;
+    private javax.swing.JLabel iterLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jWorkingTable;
+    private javax.swing.JPanel kmeansPanel;
     private javax.swing.JTextField numClustersTextField;
     private javax.swing.JTextField numIterationsTextField;
     private javax.swing.JTextField outputFileTextField;
+    private javax.swing.JLabel outputLabel;
+    private javax.swing.JTabbedPane parentTabPane;
     private javax.swing.JButton selectFile;
+    private javax.swing.JLabel selectLabel;
+    private javax.swing.JPanel sourceTab;
+    private javax.swing.JComboBox<String> superList;
+    private javax.swing.JPanel supervisedTab;
+    private javax.swing.JPanel unsupervisedTab;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
         
 }
