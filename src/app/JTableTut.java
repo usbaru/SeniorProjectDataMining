@@ -6,6 +6,7 @@
 package app;
 
 import com.opencsv.CSVReader;
+import java.awt.CardLayout;
 import java.awt.List;
 import java.io.File;
 import java.io.FileFilter;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -46,7 +48,7 @@ public class JTableTut extends javax.swing.JFrame {
         initComponents();
        
     }
-    
+
     
     
     
@@ -60,17 +62,13 @@ public class JTableTut extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         fileExplorer = new javax.swing.JFileChooser();
-        parentTabPane = new javax.swing.JTabbedPane();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         sourceTab = new javax.swing.JPanel();
         fileNameTextField = new javax.swing.JTextField();
         browseFileExplorerButton = new javax.swing.JButton();
         selectFile = new javax.swing.JButton();
-        columnComboBox = new javax.swing.JComboBox<>();
-        displayButton = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         csvTable = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column) {
@@ -78,32 +76,49 @@ public class JTableTut extends javax.swing.JFrame {
             };
         };
         jScrollPane2 = new javax.swing.JScrollPane();
-        jWorkingTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        workingTable = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        columnList = new javax.swing.JList<>();
+        getColumns = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         algorithmTab = new javax.swing.JPanel();
-        algTabPane = new javax.swing.JTabbedPane();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
         supervisedTab = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        selectLabel = new javax.swing.JLabel();
-        superList = new javax.swing.JComboBox<>();
-        cardStack = new javax.swing.JPanel();
-        kmeansPanel = new javax.swing.JPanel();
-        configLabel = new javax.swing.JLabel();
-        clusterLabel = new javax.swing.JLabel();
-        iterLabel = new javax.swing.JLabel();
-        numClustersTextField = new javax.swing.JTextField();
-        numIterationsTextField = new javax.swing.JTextField();
-        generateButton = new javax.swing.JButton();
-        outputLabel = new javax.swing.JLabel();
-        outputFileTextField = new javax.swing.JTextField();
+        supervisedSelector = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        supervisedComboBox = new javax.swing.JComboBox<>();
+        selectSupervisedCardButton = new javax.swing.JButton();
+        supervisedCardConfig = new javax.swing.JPanel();
+        defaultSupervisedConfig = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        decisionTreeConfig = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         unsupervisedTab = new javax.swing.JPanel();
+        unsupervisedCardConfig = new javax.swing.JPanel();
+        defaultUnsupervisedConfig = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        kmeansConfig = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        numClustersTextField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        numIterationsTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        outputFileTextField = new javax.swing.JTextField();
+        generateButton = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        unsupervisedSelector = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        unsupervisedComboBox = new javax.swing.JComboBox<>();
+        selectUnsupervisedCardButton = new javax.swing.JButton();
         codeTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         generatedScalaTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         fileNameTextField.setEditable(false);
         fileNameTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -126,15 +141,6 @@ public class JTableTut extends javax.swing.JFrame {
             }
         });
 
-        displayButton.setText("Display");
-        displayButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                displayButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Column:");
-
         csvTable.setModel(new javax.swing.table.DefaultTableModel(
             data,
             headerVec
@@ -142,107 +148,227 @@ public class JTableTut extends javax.swing.JFrame {
         csvTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane3.setViewportView(csvTable);
 
-        jWorkingTable.setModel(new javax.swing.table.DefaultTableModel(
+        workingTable.setModel(new javax.swing.table.DefaultTableModel(
             data,
             headerVec
         ));
-        jScrollPane2.setViewportView(jWorkingTable);
+        jScrollPane2.setViewportView(workingTable);
 
-        jButton1.setText("Add Selected Rows");
+        jScrollPane4.setViewportView(columnList);
 
-        jButton2.setText("Remove Selected Rows");
+        getColumns.setText("Get Columns");
+        getColumns.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getColumnsActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Select Column(s)");
 
         javax.swing.GroupLayout sourceTabLayout = new javax.swing.GroupLayout(sourceTab);
         sourceTab.setLayout(sourceTabLayout);
         sourceTabLayout.setHorizontalGroup(
             sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sourceTabLayout.createSequentialGroup()
-                .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(sourceTabLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(sourceTabLayout.createSequentialGroup()
-                                .addComponent(browseFileExplorerButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(sourceTabLayout.createSequentialGroup()
-                                .addGap(677, 677, 677)
-                                .addComponent(selectFile)))
-                        .addGap(314, 314, 314))
-                    .addGroup(sourceTabLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane3)
-                        .addGap(18, 18, 18)
-                        .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap()
+                .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(sourceTabLayout.createSequentialGroup()
+                            .addComponent(browseFileExplorerButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(sourceTabLayout.createSequentialGroup()
+                            .addGap(677, 677, 677)
+                            .addComponent(selectFile)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(sourceTabLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(columnComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(displayButton)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(getColumns))
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+                .addGap(23, 23, 23))
         );
         sourceTabLayout.setVerticalGroup(
             sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sourceTabLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(browseFileExplorerButton)
+                    .addComponent(selectFile))
+                .addGap(18, 18, 18)
                 .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(sourceTabLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(browseFileExplorerButton)
-                            .addComponent(selectFile)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sourceTabLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(displayButton)
-                            .addComponent(columnComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))))
-                .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, sourceTabLayout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(jButton1)
-                        .addGap(77, 77, 77)
-                        .addComponent(jButton2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, sourceTabLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
                         .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(sourceTabLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(sourceTabLayout.createSequentialGroup()
+                                .addGap(220, 220, 220)
+                                .addComponent(getColumns))))
+                    .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        parentTabPane.addTab("Source and Datasets", sourceTab);
+        jTabbedPane1.addTab("Source and Datasets", sourceTab);
 
-        jLabel1.setText("Enter desired configurations:");
+        jLabel10.setText("Select an algorithm:");
 
-        selectLabel.setText("Select an algorithm:");
+        supervisedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Decision Tree", "Supervised1", "Supervised2", "Supervised3" }));
 
-        superList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "K-Means", "Test Algorithm 2", "Test Algorithm 3" }));
-        superList.addActionListener(new java.awt.event.ActionListener() {
+        selectSupervisedCardButton.setText("Select");
+        selectSupervisedCardButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                superListActionPerformed(evt);
+                selectSupervisedCardButtonActionPerformed(evt);
             }
         });
 
-        cardStack.setPreferredSize(new java.awt.Dimension(400, 450));
-        cardStack.setLayout(new java.awt.CardLayout());
+        javax.swing.GroupLayout supervisedSelectorLayout = new javax.swing.GroupLayout(supervisedSelector);
+        supervisedSelector.setLayout(supervisedSelectorLayout);
+        supervisedSelectorLayout.setHorizontalGroup(
+            supervisedSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(supervisedSelectorLayout.createSequentialGroup()
+                .addGap(280, 280, 280)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addComponent(supervisedComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(selectSupervisedCardButton)
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+        supervisedSelectorLayout.setVerticalGroup(
+            supervisedSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(supervisedSelectorLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(supervisedSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(supervisedComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(selectSupervisedCardButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, cardStack, org.jdesktop.beansbinding.ObjectProperty.create(), kmeansPanel, org.jdesktop.beansbinding.BeanProperty.create("background"));
-        bindingGroup.addBinding(binding);
+        supervisedCardConfig.setLayout(new java.awt.CardLayout());
 
-        configLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        configLabel.setText("Configurations");
+        jLabel11.setText("Select an algorithm.");
 
-        clusterLabel.setText("Clusters:");
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel12.setText("Supervised Learning ");
 
-        iterLabel.setText("Iterations:");
+        javax.swing.GroupLayout defaultSupervisedConfigLayout = new javax.swing.GroupLayout(defaultSupervisedConfig);
+        defaultSupervisedConfig.setLayout(defaultSupervisedConfigLayout);
+        defaultSupervisedConfigLayout.setHorizontalGroup(
+            defaultSupervisedConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(defaultSupervisedConfigLayout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addGroup(defaultSupervisedConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
+                .addContainerGap(546, Short.MAX_VALUE))
+        );
+        defaultSupervisedConfigLayout.setVerticalGroup(
+            defaultSupervisedConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(defaultSupervisedConfigLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel12)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel11)
+                .addContainerGap(591, Short.MAX_VALUE))
+        );
+
+        supervisedCardConfig.add(defaultSupervisedConfig, "card2");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel13.setText("Decision Tree");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel14.setText("Configurations");
+
+        javax.swing.GroupLayout decisionTreeConfigLayout = new javax.swing.GroupLayout(decisionTreeConfig);
+        decisionTreeConfig.setLayout(decisionTreeConfigLayout);
+        decisionTreeConfigLayout.setHorizontalGroup(
+            decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(decisionTreeConfigLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14))
+                .addContainerGap(622, Short.MAX_VALUE))
+        );
+        decisionTreeConfigLayout.setVerticalGroup(
+            decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(decisionTreeConfigLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel13)
+                .addGap(55, 55, 55)
+                .addComponent(jLabel14)
+                .addContainerGap(573, Short.MAX_VALUE))
+        );
+
+        supervisedCardConfig.add(decisionTreeConfig, "card3");
+
+        javax.swing.GroupLayout supervisedTabLayout = new javax.swing.GroupLayout(supervisedTab);
+        supervisedTab.setLayout(supervisedTabLayout);
+        supervisedTabLayout.setHorizontalGroup(
+            supervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(supervisedTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(supervisedSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125)
+                .addComponent(supervisedCardConfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        supervisedTabLayout.setVerticalGroup(
+            supervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(supervisedSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(supervisedCardConfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Superivsed Learning", supervisedTab);
+
+        unsupervisedCardConfig.setLayout(new java.awt.CardLayout());
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setText("Unsupervised Learning ");
+
+        jLabel9.setText("Select an algorithm.");
+
+        javax.swing.GroupLayout defaultUnsupervisedConfigLayout = new javax.swing.GroupLayout(defaultUnsupervisedConfig);
+        defaultUnsupervisedConfig.setLayout(defaultUnsupervisedConfigLayout);
+        defaultUnsupervisedConfigLayout.setHorizontalGroup(
+            defaultUnsupervisedConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(defaultUnsupervisedConfigLayout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addGroup(defaultUnsupervisedConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel7))
+                .addContainerGap(521, Short.MAX_VALUE))
+        );
+        defaultUnsupervisedConfigLayout.setVerticalGroup(
+            defaultUnsupervisedConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(defaultUnsupervisedConfigLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addContainerGap(591, Short.MAX_VALUE))
+        );
+
+        unsupervisedCardConfig.add(defaultUnsupervisedConfig, "card3");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("K-Means");
+
+        jLabel2.setText("Clusters:");
+
+        jLabel3.setText("Iterations:");
+
+        jLabel5.setText("Output File:");
 
         generateButton.setText("Generate");
         generateButton.addActionListener(new java.awt.event.ActionListener() {
@@ -251,113 +377,123 @@ public class JTableTut extends javax.swing.JFrame {
             }
         });
 
-        outputLabel.setText("Output File:");
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Configurations");
 
-        javax.swing.GroupLayout kmeansPanelLayout = new javax.swing.GroupLayout(kmeansPanel);
-        kmeansPanel.setLayout(kmeansPanelLayout);
-        kmeansPanelLayout.setHorizontalGroup(
-            kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kmeansPanelLayout.createSequentialGroup()
-                .addComponent(configLabel)
-                .addGap(0, 219, Short.MAX_VALUE))
-            .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(kmeansPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(generateButton)
-                        .addGroup(kmeansPanelLayout.createSequentialGroup()
-                            .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(clusterLabel)
-                                .addComponent(iterLabel)
-                                .addComponent(outputLabel))
-                            .addGap(36, 36, 36)
-                            .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout kmeansConfigLayout = new javax.swing.GroupLayout(kmeansConfig);
+        kmeansConfig.setLayout(kmeansConfigLayout);
+        kmeansConfigLayout.setHorizontalGroup(
+            kmeansConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kmeansConfigLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(kmeansConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(generateButton)
+                    .addGroup(kmeansConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel8)
+                        .addGroup(kmeansConfigLayout.createSequentialGroup()
+                            .addGroup(kmeansConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel5))
+                            .addGap(42, 42, 42)
+                            .addGroup(kmeansConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(outputFileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(numIterationsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(numClustersTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(numClustersTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(0, 434, Short.MAX_VALUE))
         );
-        kmeansPanelLayout.setVerticalGroup(
-            kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kmeansPanelLayout.createSequentialGroup()
-                .addComponent(configLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 413, Short.MAX_VALUE))
-            .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(kmeansPanelLayout.createSequentialGroup()
-                    .addGap(94, 94, 94)
-                    .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(clusterLabel)
-                        .addComponent(numClustersTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(41, 41, 41)
-                    .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(iterLabel)
-                        .addComponent(numIterationsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(34, 34, 34)
-                    .addGroup(kmeansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(outputLabel)
-                        .addComponent(outputFileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(33, 33, 33)
-                    .addComponent(generateButton)
-                    .addContainerGap(153, Short.MAX_VALUE)))
-        );
-
-        cardStack.add(kmeansPanel, "kmeansCard");
-
-        javax.swing.GroupLayout supervisedTabLayout = new javax.swing.GroupLayout(supervisedTab);
-        supervisedTab.setLayout(supervisedTabLayout);
-        supervisedTabLayout.setHorizontalGroup(
-            supervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(supervisedTabLayout.createSequentialGroup()
-                .addContainerGap(447, Short.MAX_VALUE)
-                .addComponent(selectLabel)
-                .addGap(18, 18, 18)
-                .addComponent(superList, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(205, 205, 205)
+        kmeansConfigLayout.setVerticalGroup(
+            kmeansConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kmeansConfigLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addGap(27, 27, 27)
-                .addComponent(cardStack, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(369, 369, 369))
-        );
-        supervisedTabLayout.setVerticalGroup(
-            supervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(supervisedTabLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(supervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cardStack, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(supervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(selectLabel)
-                        .addComponent(superList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)))
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addGroup(kmeansConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numClustersTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(kmeansConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numIterationsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(kmeansConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(outputFileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(generateButton)
+                .addContainerGap(410, Short.MAX_VALUE))
         );
 
-        algTabPane.addTab("Supervised Algorithms", supervisedTab);
+        unsupervisedCardConfig.add(kmeansConfig, "card2");
+
+        jLabel6.setText("Select an algorithm:");
+
+        unsupervisedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "K-Means", "Unsupervised1", "Unsupervised2", "Unsupervised3" }));
+
+        selectUnsupervisedCardButton.setText("Select");
+        selectUnsupervisedCardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectUnsupervisedCardButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout unsupervisedSelectorLayout = new javax.swing.GroupLayout(unsupervisedSelector);
+        unsupervisedSelector.setLayout(unsupervisedSelectorLayout);
+        unsupervisedSelectorLayout.setHorizontalGroup(
+            unsupervisedSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(unsupervisedSelectorLayout.createSequentialGroup()
+                .addContainerGap(280, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(unsupervisedComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(selectUnsupervisedCardButton)
+                .addGap(45, 45, 45))
+        );
+        unsupervisedSelectorLayout.setVerticalGroup(
+            unsupervisedSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(unsupervisedSelectorLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(unsupervisedSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(unsupervisedComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(selectUnsupervisedCardButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout unsupervisedTabLayout = new javax.swing.GroupLayout(unsupervisedTab);
         unsupervisedTab.setLayout(unsupervisedTabLayout);
         unsupervisedTabLayout.setHorizontalGroup(
             unsupervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(unsupervisedTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(unsupervisedSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125)
+                .addComponent(unsupervisedCardConfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         unsupervisedTabLayout.setVerticalGroup(
             unsupervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(unsupervisedSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(unsupervisedCardConfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        algTabPane.addTab("Unsupervised Algorithms", unsupervisedTab);
+        jTabbedPane2.addTab("Unsupervised Learning", unsupervisedTab);
 
         javax.swing.GroupLayout algorithmTabLayout = new javax.swing.GroupLayout(algorithmTab);
         algorithmTab.setLayout(algorithmTabLayout);
         algorithmTabLayout.setHorizontalGroup(
             algorithmTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(algTabPane)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         algorithmTabLayout.setVerticalGroup(
             algorithmTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(algTabPane)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        parentTabPane.addTab("Algorithm Selection and Configurations", algorithmTab);
+        jTabbedPane1.addTab("Algorithm Selection and Configurations", algorithmTab);
 
         generatedScalaTextArea.setColumns(20);
         generatedScalaTextArea.setRows(5);
@@ -368,94 +504,36 @@ public class JTableTut extends javax.swing.JFrame {
         codeTabLayout.setHorizontalGroup(
             codeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, codeTabLayout.createSequentialGroup()
-                .addContainerGap(290, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(265, 265, 265))
+                .addGap(300, 300, 300)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 998, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(300, 300, 300))
         );
         codeTabLayout.setVerticalGroup(
             codeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(codeTabLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, codeTabLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(45, 45, 45))
         );
 
-        parentTabPane.addTab("Generated Code", codeTab);
+        jTabbedPane1.addTab("Generated Code", codeTab);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(parentTabPane)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(parentTabPane))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-
-        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void displayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayButtonActionPerformed
-        if (!loaded) {
-            System.out.println("Please select a file"); 
-        }
-        else {
-            int colIndex = columnComboBox.getSelectedIndex();
-            printColumnData(header, data, colIndex);
-        }
-        
-        
-    }//GEN-LAST:event_displayButtonActionPerformed
-
-    private void browseFileExplorerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseFileExplorerButtonActionPerformed
-        //fileExplorer.addChoosableFileFilter(new FileNameExtensionFilter("CSV Files", "csv"));
-        fileExplorer.setAcceptAllFileFilterUsed(false);
-        fileExplorer.setFileFilter(new FileNameExtensionFilter("CSV Files", "csv"));
-
-        int returnVal = fileExplorer.showOpenDialog(JTableTut.this);
-        //TODO: Verify for only a .csv file
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            openedFile = fileExplorer.getSelectedFile();
-            fileNameTextField.setText(openedFile.getAbsolutePath());
-            System.out.println("User chose: " + openedFile.getName());
-            loaded = true; 
-        } else {
-            System.out.println("User clicked cancelled");
-        }
-    }//GEN-LAST:event_browseFileExplorerButtonActionPerformed
-
-    private void selectFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectFileActionPerformed
-        if (!loaded) {
-            System.out.println("Please select file."); 
-        } else {
-            String fileName = openedFile.getAbsolutePath();
-            saveData(fileName);
-            loaded = true;
-        }                                  
-        
-    }//GEN-LAST:event_selectFileActionPerformed
-    
-    
-    private void fileNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileNameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fileNameTextFieldActionPerformed
-
-    private void RemoveButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveButActionPerformed
-       String name = RemoveColTF.getText(); //Text field
-      int i = Integer.parseInt(name);
-       DefaultTableModel model = (DefaultTableModel)csvTable.getModel();
-       TableColumnModel columnModel = csvTable.getColumnModel();
-       csvTable.removeColumn(csvTable.getColumnModel().getColumn(i));
-    }//GEN-LAST:event_RemoveButActionPerformed
-
-    private void superListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_superListActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_superListActionPerformed
 
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
         int numClusters = Integer.parseInt(numClustersTextField.getText());
@@ -464,7 +542,7 @@ public class JTableTut extends javax.swing.JFrame {
             generatedScalaTextArea.setText("Please select a file");
         }
         else {
-            int colIndex = columnComboBox.getSelectedIndex();
+            int colIndex = columnList.getSelectedIndex(); 
             if(numClusters <= 0){
                 generatedScalaTextArea.append("NUMBER OF CLUSTERS CANNOT BE 0 OR LESS.");
             }
@@ -478,7 +556,82 @@ public class JTableTut extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_generateButtonActionPerformed
-	
+
+    private void getColumnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getColumnsActionPerformed
+        int[] listColumns;
+        if(!loaded) {
+            System.out.println("Please select file.");
+        } else {
+            listColumns = columnList.getSelectedIndices();
+            loadTableColumns(listColumns);
+        }
+    }//GEN-LAST:event_getColumnsActionPerformed
+
+    private void selectFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectFileActionPerformed
+        if (!loaded) {
+            System.out.println("Please select file.");
+        } else {
+            String fileName = openedFile.getAbsolutePath();
+            saveData(fileName);
+            loaded = true;
+        }
+    }//GEN-LAST:event_selectFileActionPerformed
+
+    private void browseFileExplorerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseFileExplorerButtonActionPerformed
+        //fileExplorer.addChoosableFileFilter(new FileNameExtensionFilter("CSV Files", "csv"));
+        fileExplorer.setAcceptAllFileFilterUsed(false);
+        fileExplorer.setFileFilter(new FileNameExtensionFilter("CSV Files", "csv"));
+
+        int returnVal = fileExplorer.showOpenDialog(JTableTut.this);
+        //TODO: Verify for only a .csv file
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            openedFile = fileExplorer.getSelectedFile();
+            fileNameTextField.setText(openedFile.getAbsolutePath());
+            System.out.println("User chose: " + openedFile.getName());
+            loaded = true;
+        } else {
+            System.out.println("User clicked cancelled");
+        }
+    }//GEN-LAST:event_browseFileExplorerButtonActionPerformed
+
+    private void fileNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fileNameTextFieldActionPerformed
+
+    private void selectUnsupervisedCardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectUnsupervisedCardButtonActionPerformed
+        
+        int itemIndex = unsupervisedComboBox.getSelectedIndex();
+        kmeansConfig.setVisible(false); 
+        defaultUnsupervisedConfig.setVisible(false); 
+        switch(itemIndex) {
+            case 0:
+                kmeansConfig.setVisible(true);
+                break;
+            case 1:
+                defaultUnsupervisedConfig.setVisible(true);
+                break;
+            default: 
+                defaultUnsupervisedConfig.setVisible(true); 
+        }
+    }//GEN-LAST:event_selectUnsupervisedCardButtonActionPerformed
+
+    private void selectSupervisedCardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectSupervisedCardButtonActionPerformed
+        // TODO add your handling code here:
+        int itemIndex = supervisedComboBox.getSelectedIndex();
+        defaultSupervisedConfig.setVisible(false);
+        decisionTreeConfig.setVisible(false);
+         switch(itemIndex) {
+            case 0:
+                decisionTreeConfig.setVisible(true);
+                break;
+            case 1:
+                defaultUnsupervisedConfig.setVisible(true);
+                break;
+            default: 
+                defaultUnsupervisedConfig.setVisible(true);
+         }
+    }//GEN-LAST:event_selectSupervisedCardButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -549,25 +702,25 @@ public class JTableTut extends javax.swing.JFrame {
             Logger.getLogger(JTableTut.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        printColumnData(header, data, 0); 
-        updateComboBox(header);
+        printColumnData(header, data); 
+        updateList(header); 
     }
     
 
-    public void printColumnData(String[] header, Vector<Vector<String>> data, int colNumber) {
-
+    public void printColumnData(String[] header, Vector<Vector<String>> data) {
         csvTable.setModel(new javax.swing.table.DefaultTableModel(
                 data,
                 headerVec));
-        
-    }
-    
-
-    
-    public void updateComboBox(String[] header) {
+        workingTable.setModel(new javax.swing.table.DefaultTableModel(
+                data,
+                headerVec));
+    }    
+    public void updateList(String[] header) {
+        DefaultListModel model = new DefaultListModel();
         for (String x: header) {
-            columnComboBox.addItem(x.toUpperCase()); 
+            model.addElement(x.toUpperCase());
         }
+        columnList.setModel(model);
     }
     
     public void createFile(int colIndex, String outputFileName) {
@@ -582,6 +735,21 @@ public class JTableTut extends javax.swing.JFrame {
             Logger.getLogger(JTableTut.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void loadTableColumns(int[] columnList) {
+        printColumnData(header, data);
+        for (int i = 0; i < header.length; i++) {
+            for (int j = 0; j < columnList.length; j++) {
+                if ( i == columnList[j] ) {
+                    break;
+                } 
+                workingTable.getColumnModel().getColumn(i).setMinWidth(0);
+                workingTable.getColumnModel().getColumn(i).setMaxWidth(0);
+                workingTable.getColumnModel().getColumn(i).setWidth(0);
+            }
+        }
+    }
+    
     
     public void generateScalaCode(int clu, int ite) {
         String generatedCode; 
@@ -605,43 +773,56 @@ public class JTableTut extends javax.swing.JFrame {
        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane algTabPane;
     private javax.swing.JPanel algorithmTab;
     private javax.swing.JButton browseFileExplorerButton;
-    private javax.swing.JPanel cardStack;
-    private javax.swing.JLabel clusterLabel;
     private javax.swing.JPanel codeTab;
-    private javax.swing.JComboBox<String> columnComboBox;
-    private javax.swing.JLabel configLabel;
+    private javax.swing.JList<String> columnList;
     private javax.swing.JTable csvTable;
-    private javax.swing.JButton displayButton;
+    private javax.swing.JPanel decisionTreeConfig;
+    private javax.swing.JPanel defaultSupervisedConfig;
+    private javax.swing.JPanel defaultUnsupervisedConfig;
     private javax.swing.JFileChooser fileExplorer;
     private javax.swing.JTextField fileNameTextField;
     private javax.swing.JButton generateButton;
     private javax.swing.JTextArea generatedScalaTextArea;
-    private javax.swing.JLabel iterLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton getColumns;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jWorkingTable;
-    private javax.swing.JPanel kmeansPanel;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JPanel kmeansConfig;
     private javax.swing.JTextField numClustersTextField;
     private javax.swing.JTextField numIterationsTextField;
     private javax.swing.JTextField outputFileTextField;
-    private javax.swing.JLabel outputLabel;
-    private javax.swing.JTabbedPane parentTabPane;
     private javax.swing.JButton selectFile;
-    private javax.swing.JLabel selectLabel;
+    private javax.swing.JButton selectSupervisedCardButton;
+    private javax.swing.JButton selectUnsupervisedCardButton;
     private javax.swing.JPanel sourceTab;
-    private javax.swing.JComboBox<String> superList;
+    private javax.swing.JPanel supervisedCardConfig;
+    private javax.swing.JComboBox<String> supervisedComboBox;
+    private javax.swing.JPanel supervisedSelector;
     private javax.swing.JPanel supervisedTab;
+    private javax.swing.JPanel unsupervisedCardConfig;
+    private javax.swing.JComboBox<String> unsupervisedComboBox;
+    private javax.swing.JPanel unsupervisedSelector;
     private javax.swing.JPanel unsupervisedTab;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
+    private javax.swing.JTable workingTable;
     // End of variables declaration//GEN-END:variables
         
 }
-
