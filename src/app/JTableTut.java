@@ -495,7 +495,9 @@ public class JTableTut extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Algorithm Selection and Configurations", algorithmTab);
 
+        generatedScalaTextArea.setEditable(false);
         generatedScalaTextArea.setColumns(20);
+        generatedScalaTextArea.setFont(new java.awt.Font("Consolas", 0, 16)); // NOI18N
         generatedScalaTextArea.setRows(5);
         jScrollPane1.setViewportView(generatedScalaTextArea);
 
