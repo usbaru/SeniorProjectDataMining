@@ -858,15 +858,17 @@ public class JTableTut extends javax.swing.JFrame {
     
     public void loadTableColumns(int[] columnList) {
         printColumnData(header, data);
-        for (int i = 0; i < header.length; i++) {
-            for (int j = 0; j < columnList.length; j++) {
-                if ( i == columnList[j] ) {
-                    break;
-                } 
-                workingTable.getColumnModel().getColumn(i).setMinWidth(0);
-                workingTable.getColumnModel().getColumn(i).setMaxWidth(0);
-                workingTable.getColumnModel().getColumn(i).setWidth(0);
-            }
+        int count = 0; 
+        while (count < header.length) {
+            workingTable.getColumnModel().getColumn(count).setMinWidth(0);
+            workingTable.getColumnModel().getColumn(count).setMaxWidth(0);
+            workingTable.getColumnModel().getColumn(count).setWidth(0);
+            count++;
+        }
+        for (int i = 0 ; i < columnList.length; i++) {
+            workingTable.getColumnModel().getColumn(columnList[i]).setMinWidth(20);
+            workingTable.getColumnModel().getColumn(columnList[i]).setMaxWidth(200);
+            workingTable.getColumnModel().getColumn(columnList[i]).setWidth(50);
         }
     }
     
