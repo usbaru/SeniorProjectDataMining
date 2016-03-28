@@ -95,6 +95,17 @@ public class JTableTut extends javax.swing.JFrame {
         decisionTreeConfig = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        numClassesTextField = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        maxDepthTextField = new javax.swing.JTextField();
+        generateDecisionTreeButton = new javax.swing.JButton();
+        decisionTreeOutputFileText = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        maxBinsTextField = new javax.swing.JTextField();
+        impurityComboBox = new javax.swing.JComboBox<>();
         unsupervisedTab = new javax.swing.JPanel();
         unsupervisedCardConfig = new javax.swing.JPanel();
         defaultUnsupervisedConfig = new javax.swing.JPanel();
@@ -114,6 +125,7 @@ public class JTableTut extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         unsupervisedComboBox = new javax.swing.JComboBox<>();
         selectUnsupervisedCardButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         codeTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         generatedScalaTextArea = new javax.swing.JTextArea();
@@ -163,7 +175,7 @@ public class JTableTut extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Select Column(s)");
+        jLabel4.setText("Select Columns");
 
         javax.swing.GroupLayout sourceTabLayout = new javax.swing.GroupLayout(sourceTab);
         sourceTab.setLayout(sourceTabLayout);
@@ -187,7 +199,9 @@ public class JTableTut extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(getColumns))
-                    .addComponent(jLabel4))
+                    .addGroup(sourceTabLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel4)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
                 .addGap(23, 23, 23))
@@ -290,6 +304,25 @@ public class JTableTut extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Configurations");
 
+        jLabel18.setText("Number of Classes:");
+
+        jLabel20.setText("Impurity:");
+
+        jLabel21.setText("Max Depth: ");
+
+        generateDecisionTreeButton.setText("Generate");
+        generateDecisionTreeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateDecisionTreeButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText("Max Bins:");
+
+        jLabel23.setText("Output File: ");
+
+        impurityComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "gini", "variance", "entropy"}));
+
         javax.swing.GroupLayout decisionTreeConfigLayout = new javax.swing.GroupLayout(decisionTreeConfig);
         decisionTreeConfig.setLayout(decisionTreeConfigLayout);
         decisionTreeConfigLayout.setHorizontalGroup(
@@ -297,9 +330,30 @@ public class JTableTut extends javax.swing.JFrame {
             .addGroup(decisionTreeConfigLayout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(generateDecisionTreeButton)
+                        .addGroup(decisionTreeConfigLayout.createSequentialGroup()
+                            .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel20)
+                                .addComponent(jLabel22)
+                                .addComponent(jLabel21)
+                                .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(decisionTreeConfigLayout.createSequentialGroup()
+                                    .addGap(42, 42, 42)
+                                    .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(maxDepthTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                        .addComponent(numClassesTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                        .addComponent(impurityComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, decisionTreeConfigLayout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(decisionTreeOutputFileText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(maxBinsTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addComponent(jLabel13)
                     .addComponent(jLabel14))
-                .addContainerGap(622, Short.MAX_VALUE))
+                .addContainerGap(391, Short.MAX_VALUE))
         );
         decisionTreeConfigLayout.setVerticalGroup(
             decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,7 +362,29 @@ public class JTableTut extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addGap(55, 55, 55)
                 .addComponent(jLabel14)
-                .addContainerGap(573, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numClassesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18))
+                .addGap(18, 18, 18)
+                .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(impurityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(maxDepthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(maxBinsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(decisionTreeOutputFileText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addComponent(generateDecisionTreeButton)
+                .addContainerGap(327, Short.MAX_VALUE))
         );
 
         supervisedCardConfig.add(decisionTreeConfig, "card3");
@@ -482,6 +558,19 @@ public class JTableTut extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Unsupervised Learning", unsupervisedTab);
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1626, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 697, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Other", jPanel1);
+
         javax.swing.GroupLayout algorithmTabLayout = new javax.swing.GroupLayout(algorithmTab);
         algorithmTab.setLayout(algorithmTabLayout);
         algorithmTabLayout.setHorizontalGroup(
@@ -554,7 +643,7 @@ public class JTableTut extends javax.swing.JFrame {
             else{
                 String outputFileName = outputFileTextField.getText();
                 createFile(colIndex, outputFileName);
-                generateScalaCode(numClusters, numIterations);
+                generateKMeansScalaCode(numClusters, numIterations);
             }
         }
     }//GEN-LAST:event_generateButtonActionPerformed
@@ -633,6 +722,35 @@ public class JTableTut extends javax.swing.JFrame {
                 defaultUnsupervisedConfig.setVisible(true);
          }
     }//GEN-LAST:event_selectSupervisedCardButtonActionPerformed
+
+    private void generateDecisionTreeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateDecisionTreeButtonActionPerformed
+        int numClasses = Integer.parseInt(numClassesTextField.getText());
+        String impurity = (String)impurityComboBox.getSelectedItem();
+        int maxDepth = Integer.parseInt(maxDepthTextField.getText());
+        int maxBins = Integer.parseInt(maxBinsTextField.getText());
+        if (!loaded) {
+            generatedScalaTextArea.setText("Please select a file");
+        }
+        else {
+            if (numClasses <= 0) {
+                generatedScalaTextArea.append("NUMBER OF CLASSES CANNOT BE 0 OR LESS.");
+            }
+            else if (maxDepth <= 0) {
+                generatedScalaTextArea.append("MAX DEPTH CANNOT BE 0 OR LESS.");
+            }
+            else if (maxBins <= 0) {
+                generatedScalaTextArea.append("MAX BIN CANNOT BE 0 OR LESS.");
+            }
+            else {
+                int colIndex = columnList.getSelectedIndex(); 
+                String outputFileName = decisionTreeOutputFileText.getText();
+                createFile(colIndex, outputFileName);
+                generateDecisionTreeScalaCode(numClasses, impurity, maxDepth, maxBins);
+            }
+        }
+        
+
+    }//GEN-LAST:event_generateDecisionTreeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -753,7 +871,7 @@ public class JTableTut extends javax.swing.JFrame {
     }
     
     
-    public void generateScalaCode(int clu, int ite) {
+    public void generateKMeansScalaCode(int clu, int ite) {
         String generatedCode; 
         String path = outputFile.getAbsolutePath().replaceAll("\\\\", "/");
         
@@ -765,9 +883,35 @@ public class JTableTut extends javax.swing.JFrame {
                 "val numIterations = " + ite + "\n" +
                 "val clusters = KMeans.train(parsedData, numClusters, numIterations)\n\n" +
                 "val WSSE = clusters.computeCost(parsedData)\n" +
-                "println(\"Within Set Sum of Squared Errors = \" + WSSE)\n" + 
-                "clusters.save(sc, \"myModelPath\")\n" +
-                "val sameModel = KMeansModel.load(sc, \"myModelPath\")\n\n";
+                "println(\"Within Set Sum of Squared Errors = \" + WSSE)\n";
+        
+        generatedScalaTextArea.setText(generatedCode); 
+    }
+    
+    public void generateDecisionTreeScalaCode(int x, String imp, int maxD, int maxB){
+        String generatedCode; 
+        String path = outputFile.getAbsolutePath().replaceAll("\\\\", "/");
+        
+        generatedCode = "import org.apache.spark.mllib.tree.DecisionTree\n" +
+                "import org.apache.spark.mllib.tree.model.DecisionTreeModel\n" +
+                "import org.apache.spark.mllib.util.MLUtils\n\n" +
+                "val data = MLUtils.loadLibSVMFile(sc, " + path + ")\n" +
+                "val splits = data.randomSplit(Array(.07, .03))\n" +
+                "val (trainingData, testData) = (splits(0), splits(1))\n\n" +
+                "val numClasses = " + x + "\n" +
+                "val categoricalFeaturesInfo = Map[Int, Int]()\n" +
+                "val impurity = " + imp + "\n" +
+                "val maxDepth = " + maxD + "\n" + 
+                "val maxBins = " + maxB + "\n\n" +
+                "val model = DecisionTree.trainClassifier(trainingData, numClasses, categoricalFeaturesInfo,\n" +
+                    "  impurity, maxDepth, maxBins)\n" +
+                "val labelAndPreds = testData.map { point =>\n" +
+                    "  val prediction = model.predict(point.features)\n" +
+                    "  (point.label, prediction)\n" +
+                    "}\n" + 
+                "val testErr = labelAndPreds.filter(r => r._1 != r._2).count().toDouble / testData.count()\n" +
+"println(\"Test Error = \" + testErr)\n" +
+"println(\"Learned classification tree model:\\n\" + model.toDebugString)\n";
         
         generatedScalaTextArea.setText(generatedCode); 
     }
@@ -781,20 +925,28 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JList<String> columnList;
     private javax.swing.JTable csvTable;
     private javax.swing.JPanel decisionTreeConfig;
+    private javax.swing.JTextField decisionTreeOutputFileText;
     private javax.swing.JPanel defaultSupervisedConfig;
     private javax.swing.JPanel defaultUnsupervisedConfig;
     private javax.swing.JFileChooser fileExplorer;
     private javax.swing.JTextField fileNameTextField;
     private javax.swing.JButton generateButton;
+    private javax.swing.JButton generateDecisionTreeButton;
     private javax.swing.JTextArea generatedScalaTextArea;
     private javax.swing.JButton getColumns;
+    private javax.swing.JComboBox<String> impurityComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -802,6 +954,7 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -809,6 +962,9 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel kmeansConfig;
+    private javax.swing.JTextField maxBinsTextField;
+    private javax.swing.JTextField maxDepthTextField;
+    private javax.swing.JTextField numClassesTextField;
     private javax.swing.JTextField numClustersTextField;
     private javax.swing.JTextField numIterationsTextField;
     private javax.swing.JTextField outputFileTextField;

@@ -80,7 +80,10 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="getColumns" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" pref="524" max="32767" attributes="0"/>
@@ -212,7 +215,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Select Column(s)"/>
+                <Property name="text" type="java.lang.String" value="Select Columns"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -392,10 +395,39 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="generateDecisionTreeButton" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="jLabel18" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel23" alignment="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                              <Component id="maxDepthTextField" alignment="0" pref="200" max="32767" attributes="0"/>
+                                                              <Component id="numClassesTextField" alignment="0" pref="200" max="32767" attributes="0"/>
+                                                              <Component id="impurityComboBox" alignment="0" max="32767" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="decisionTreeOutputFileText" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                                              <Component id="maxBinsTextField" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
                                           <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="622" max="32767" attributes="0"/>
+                                      <EmptySpace pref="391" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -406,7 +438,34 @@
                                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="573" max="32767" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="numClassesTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="impurityComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="maxDepthTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="maxBinsTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="decisionTreeOutputFileText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                      <Component id="generateDecisionTreeButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="327" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -427,6 +486,57 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Configurations"/>
                               </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="numClassesTextField">
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel18">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Number of Classes:"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel20">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Impurity:"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel21">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Max Depth: "/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="maxDepthTextField">
+                            </Component>
+                            <Component class="javax.swing.JButton" name="generateDecisionTreeButton">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Generate"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generateDecisionTreeButtonActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="decisionTreeOutputFileText">
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel22">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Max Bins:"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel23">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Output File: "/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="maxBinsTextField">
+                            </Component>
+                            <Component class="javax.swing.JComboBox" name="impurityComboBox">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                  <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;gini&quot;, &quot;variance&quot;, &quot;entropy&quot;})" type="code"/>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                              </AuxValues>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -686,6 +796,28 @@
                       </SubComponents>
                     </Container>
                   </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="jPanel1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                      <JTabbedPaneConstraints tabName="Other">
+                        <Property name="tabTitle" type="java.lang.String" value="Other"/>
+                      </JTabbedPaneConstraints>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="1626" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="697" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
                 </Container>
               </SubComponents>
             </Container>
