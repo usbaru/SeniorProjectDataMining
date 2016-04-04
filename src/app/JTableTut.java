@@ -843,6 +843,7 @@ public class JTableTut extends javax.swing.JFrame {
         columnList.setModel(model);
     }
     
+    //not multiple column
     public void createFile(int colIndex, String outputFileName) {
         try { 
             outputFile = new File(outputFileName + ".txt");
