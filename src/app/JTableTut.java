@@ -78,7 +78,7 @@ public class JTableTut extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         workingTable = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        columnList = new javax.swing.JList<>();
+        columnList = new javax.swing.JList<String>();
         getColumns = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         algorithmTab = new javax.swing.JPanel();
@@ -86,7 +86,7 @@ public class JTableTut extends javax.swing.JFrame {
         supervisedTab = new javax.swing.JPanel();
         supervisedSelector = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        supervisedComboBox = new javax.swing.JComboBox<>();
+        supervisedComboBox = new javax.swing.JComboBox<String>();
         selectSupervisedCardButton = new javax.swing.JButton();
         supervisedCardConfig = new javax.swing.JPanel();
         defaultSupervisedConfig = new javax.swing.JPanel();
@@ -113,6 +113,7 @@ public class JTableTut extends javax.swing.JFrame {
         lambdaTextField = new javax.swing.JTextField();
         bayesOutputFileText = new javax.swing.JTextField();
         generateBayesButton = new javax.swing.JButton();
+        impurityComboBox = new javax.swing.JComboBox<String>();
         unsupervisedTab = new javax.swing.JPanel();
         unsupervisedCardConfig = new javax.swing.JPanel();
         defaultUnsupervisedConfig = new javax.swing.JPanel();
@@ -128,9 +129,17 @@ public class JTableTut extends javax.swing.JFrame {
         outputFileTextField = new javax.swing.JTextField();
         generateButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        gaussianConfig = new javax.swing.JPanel();
+        jLabelGaussian2 = new javax.swing.JLabel();
+        numClustersGaussian = new javax.swing.JTextField();
+        jLabelGaussian4 = new javax.swing.JLabel();
+        jLabelGaussian1 = new javax.swing.JLabel();
+        jLabelGaussian3 = new javax.swing.JLabel();
+        outputFileTextFieldGaussian = new javax.swing.JTextField();
+        generateButtonGaussian = new javax.swing.JButton();
         unsupervisedSelector = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        unsupervisedComboBox = new javax.swing.JComboBox<>();
+        unsupervisedComboBox = new javax.swing.JComboBox<String>();
         selectUnsupervisedCardButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         codeTab = new javax.swing.JPanel();
@@ -235,7 +244,7 @@ public class JTableTut extends javax.swing.JFrame {
                     .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Source and Datasets", sourceTab);
@@ -300,7 +309,7 @@ public class JTableTut extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
-                .addContainerGap(591, Short.MAX_VALUE))
+                .addContainerGap(618, Short.MAX_VALUE))
         );
 
         supervisedCardConfig.add(defaultSupervisedConfig, "card2");
@@ -391,7 +400,7 @@ public class JTableTut extends javax.swing.JFrame {
                     .addComponent(decisionTreeOutputFileText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(generateDecisionTreeButton)
-                .addContainerGap(327, Short.MAX_VALUE))
+                .addContainerGap(364, Short.MAX_VALUE))
         );
 
         supervisedCardConfig.add(decisionTreeConfig, "card3");
@@ -495,7 +504,7 @@ public class JTableTut extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
-                .addContainerGap(591, Short.MAX_VALUE))
+                .addContainerGap(618, Short.MAX_VALUE))
         );
 
         unsupervisedCardConfig.add(defaultUnsupervisedConfig, "card3");
@@ -540,7 +549,7 @@ public class JTableTut extends javax.swing.JFrame {
                                 .addComponent(outputFileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(numIterationsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(numClustersTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 434, Short.MAX_VALUE))
+                .addGap(0, 473, Short.MAX_VALUE))
         );
         kmeansConfigLayout.setVerticalGroup(
             kmeansConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -563,14 +572,74 @@ public class JTableTut extends javax.swing.JFrame {
                     .addComponent(outputFileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(generateButton)
-                .addContainerGap(410, Short.MAX_VALUE))
+                .addContainerGap(443, Short.MAX_VALUE))
         );
 
         unsupervisedCardConfig.add(kmeansConfig, "card2");
 
+        jLabelGaussian2.setText("Clusters:");
+
+        jLabelGaussian4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabelGaussian4.setText("Gaussian Mixture");
+
+        jLabelGaussian1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelGaussian1.setText("Configurations");
+
+        jLabelGaussian3.setText("Output File:");
+
+        generateButtonGaussian.setText("Generate");
+        generateButtonGaussian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateButtonGaussianActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout gaussianConfigLayout = new javax.swing.GroupLayout(gaussianConfig);
+        gaussianConfig.setLayout(gaussianConfigLayout);
+        gaussianConfigLayout.setHorizontalGroup(
+            gaussianConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gaussianConfigLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(gaussianConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelGaussian4)
+                    .addComponent(jLabelGaussian1)
+                    .addGroup(gaussianConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(generateButtonGaussian)
+                        .addGroup(gaussianConfigLayout.createSequentialGroup()
+                            .addGroup(gaussianConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelGaussian2)
+                                .addComponent(jLabelGaussian3))
+                            .addGap(42, 42, 42)
+                            .addGroup(gaussianConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(outputFileTextFieldGaussian, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(numClustersGaussian, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(0, 473, Short.MAX_VALUE))
+        );
+        gaussianConfigLayout.setVerticalGroup(
+            gaussianConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gaussianConfigLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabelGaussian4)
+                .addGap(55, 55, 55)
+                .addComponent(jLabelGaussian1)
+                .addGap(18, 18, 18)
+                .addGroup(gaussianConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numClustersGaussian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelGaussian2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(gaussianConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelGaussian3)
+                    .addComponent(outputFileTextFieldGaussian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(generateButtonGaussian)
+                .addContainerGap(495, Short.MAX_VALUE))
+        );
+
+        unsupervisedCardConfig.add(gaussianConfig, "card4");
+
         jLabel6.setText("Select an algorithm:");
 
-        unsupervisedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "K-Means", "Unsupervised1", "Unsupervised2", "Unsupervised3" }));
+        unsupervisedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "K-Means", "Gaussian Mixutre", "Unsupervised1", "Unsupervised2", "Unsupervised3" }));
 
         selectUnsupervisedCardButton.setText("Select");
         selectUnsupervisedCardButton.addActionListener(new java.awt.event.ActionListener() {
@@ -629,7 +698,7 @@ public class JTableTut extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 697, Short.MAX_VALUE)
+            .addGap(0, 722, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Other", jPanel1);
@@ -762,7 +831,7 @@ public class JTableTut extends javax.swing.JFrame {
                 kmeansConfig.setVisible(true);
                 break;
             case 1:
-                defaultUnsupervisedConfig.setVisible(true);
+                gaussianConfig.setVisible(true);
                 break;
             default: 
                 defaultUnsupervisedConfig.setVisible(true); 
@@ -832,6 +901,22 @@ public class JTableTut extends javax.swing.JFrame {
             }
        }
     }//GEN-LAST:event_generateBayesButtonActionPerformed
+    private void generateButtonGaussianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonGaussianActionPerformed
+        int numClusters = Integer.parseInt(numClustersGaussian.getText());
+        if (!loaded) {
+            generatedScalaTextArea.setText("Please select a file");
+        }
+        else if(numClusters <= 0){            
+                generatedScalaTextArea.append("NUMBER OF CLUSTERS CANNOT BE 0 OR LESS.");
+            }
+            else{
+                int colIndex = columnList.getSelectedIndex();
+                String outputFileName = outputFileTextFieldGaussian.getText();
+                createFile(colIndex, outputFileName);
+                generateGaussianScalaCode(numClusters);
+            }
+        
+    }//GEN-LAST:event_generateButtonGaussianActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1024,6 +1109,22 @@ public class JTableTut extends javax.swing.JFrame {
                         "val accuracy = 1.0 * predictionAndLabel.filter(x => x._1 == x._2).count() / test.count()\n";
     }
    
+    public void generateGaussianScalaCode(int clu){
+        String generatedCode;
+        String path = outputFile.getAbsolutePath().replaceAll("\\\\", "/");
+        
+        generatedCode = "import org.apache.spark.mllib.clustering.GaussianMixture\n" +
+                        "import org.apache.spark.mllib.clustering.GaussianMixtureModel\n" +
+                        "import org.apache.spark.mllib.linalg.Vectors\n" +
+                        "val data = sc.textFile(\"" + path + "\")\n" +
+                        "val parsedData = data.map(s => Vectors.dense(s.trim.split(' ').map(_.toDouble))).cache()\n" +
+                        "val gmm = new GaussianMixture().setK(" + clu + ").run(parsedData)\n" +
+                        "for (i <- 0 until gmm.k) {\n" +
+                        "println(\"weight=%f\\nmu=%s\\nsigma=\\n%s\\n\" format\n" +
+                        "(gmm.weights(i), gmm.gaussians(i).mu, gmm.gaussians(i).sigma))\n" +
+                        "}";
+                
+    }   
        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1041,7 +1142,9 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JFileChooser fileExplorer;
     private javax.swing.JTextField fileNameTextField;
     private javax.swing.JButton generateBayesButton;
+    private javax.swing.JPanel gaussianConfig;
     private javax.swing.JButton generateButton;
+    private javax.swing.JButton generateButtonGaussian;
     private javax.swing.JButton generateDecisionTreeButton;
     private javax.swing.JTextArea generatedScalaTextArea;
     private javax.swing.JButton getColumns;
@@ -1065,6 +1168,10 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelGaussian1;
+    private javax.swing.JLabel jLabelGaussian2;
+    private javax.swing.JLabel jLabelGaussian3;
+    private javax.swing.JLabel jLabelGaussian4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1079,10 +1186,12 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JTextField maxDepthTextField;
     private javax.swing.JPanel naiveBayesConfig;
     private javax.swing.JTextField numClassesTextField;
+    private javax.swing.JTextField numClustersGaussian;
     private javax.swing.JTextField numClustersTextField;
     private javax.swing.JTextField numIterationsTextField;
     private javax.swing.JTextField outputFileTextField;
     private javax.swing.JLabel outputLabel;
+    private javax.swing.JTextField outputFileTextFieldGaussian;
     private javax.swing.JButton selectFile;
     private javax.swing.JButton selectSupervisedCardButton;
     private javax.swing.JButton selectUnsupervisedCardButton;
