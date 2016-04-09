@@ -313,7 +313,7 @@
                         <Component class="javax.swing.JComboBox" name="supervisedComboBox">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Decision Tree&quot;, &quot;Supervised1&quot;, &quot;Supervised2&quot;, &quot;Supervised3&quot; })" type="code"/>
+                              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Decision Tree&quot;, &quot;Naive Bayes&quot;, &quot;Supervised2&quot;, &quot;Supervised3&quot; })" type="code"/>
                             </Property>
                           </Properties>
                           <AuxValues>
@@ -537,6 +537,97 @@
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                               </AuxValues>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                        <Container class="javax.swing.JPanel" name="naiveBayesConfig">
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                              <CardConstraints cardName="card4"/>
+                            </Constraint>
+                          </Constraints>
+
+                          <Layout>
+                            <DimensionLayout dim="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="bayesLabel" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                              <Component id="generateBayesButton" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="lambdaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="outputLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="lambdaTextField" pref="150" max="32767" attributes="0"/>
+                                                      <Component id="bayesOutputFileText" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace pref="472" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                            </DimensionLayout>
+                            <DimensionLayout dim="1">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                      <Component id="bayesLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lambdaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lambdaTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="outputLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="bayesOutputFileText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Component id="generateBayesButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="487" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                            </DimensionLayout>
+                          </Layout>
+                          <SubComponents>
+                            <Component class="javax.swing.JLabel" name="bayesLabel">
+                              <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Tahoma" size="18" style="1"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Naive Bayes"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="lambdaLabel">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Set Lambda (Default 1.0):"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="outputLabel">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Output File:"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="lambdaTextField">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="1.0"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="bayesOutputFileText">
+                            </Component>
+                            <Component class="javax.swing.JButton" name="generateBayesButton">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Generate"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generateBayesButtonActionPerformed"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>

@@ -106,6 +106,13 @@ public class JTableTut extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         maxBinsTextField = new javax.swing.JTextField();
         impurityComboBox = new javax.swing.JComboBox<>();
+        naiveBayesConfig = new javax.swing.JPanel();
+        bayesLabel = new javax.swing.JLabel();
+        lambdaLabel = new javax.swing.JLabel();
+        outputLabel = new javax.swing.JLabel();
+        lambdaTextField = new javax.swing.JTextField();
+        bayesOutputFileText = new javax.swing.JTextField();
+        generateBayesButton = new javax.swing.JButton();
         unsupervisedTab = new javax.swing.JPanel();
         unsupervisedCardConfig = new javax.swing.JPanel();
         defaultUnsupervisedConfig = new javax.swing.JPanel();
@@ -235,7 +242,7 @@ public class JTableTut extends javax.swing.JFrame {
 
         jLabel10.setText("Select an algorithm:");
 
-        supervisedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Decision Tree", "Supervised1", "Supervised2", "Supervised3" }));
+        supervisedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Decision Tree", "Naive Bayes", "Supervised2", "Supervised3" }));
 
         selectSupervisedCardButton.setText("Select");
         selectSupervisedCardButton.addActionListener(new java.awt.event.ActionListener() {
@@ -388,6 +395,62 @@ public class JTableTut extends javax.swing.JFrame {
         );
 
         supervisedCardConfig.add(decisionTreeConfig, "card3");
+
+        bayesLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        bayesLabel.setText("Naive Bayes");
+
+        lambdaLabel.setText("Set Lambda (Default 1.0):");
+
+        outputLabel.setText("Output File:");
+
+        lambdaTextField.setText("1.0");
+
+        generateBayesButton.setText("Generate");
+        generateBayesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateBayesButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout naiveBayesConfigLayout = new javax.swing.GroupLayout(naiveBayesConfig);
+        naiveBayesConfig.setLayout(naiveBayesConfigLayout);
+        naiveBayesConfigLayout.setHorizontalGroup(
+            naiveBayesConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(naiveBayesConfigLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(naiveBayesConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bayesLabel)
+                    .addGroup(naiveBayesConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(generateBayesButton)
+                        .addGroup(naiveBayesConfigLayout.createSequentialGroup()
+                            .addGroup(naiveBayesConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lambdaLabel)
+                                .addComponent(outputLabel))
+                            .addGap(27, 27, 27)
+                            .addGroup(naiveBayesConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lambdaTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(bayesOutputFileText)))))
+                .addContainerGap(472, Short.MAX_VALUE))
+        );
+        naiveBayesConfigLayout.setVerticalGroup(
+            naiveBayesConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(naiveBayesConfigLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(bayesLabel)
+                .addGap(36, 36, 36)
+                .addGroup(naiveBayesConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lambdaLabel)
+                    .addComponent(lambdaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(naiveBayesConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(outputLabel)
+                    .addComponent(bayesOutputFileText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(generateBayesButton)
+                .addContainerGap(487, Short.MAX_VALUE))
+        );
+
+        supervisedCardConfig.add(naiveBayesConfig, "card4");
 
         javax.swing.GroupLayout supervisedTabLayout = new javax.swing.GroupLayout(supervisedTab);
         supervisedTab.setLayout(supervisedTabLayout);
@@ -716,7 +779,7 @@ public class JTableTut extends javax.swing.JFrame {
                 decisionTreeConfig.setVisible(true);
                 break;
             case 1:
-                defaultUnsupervisedConfig.setVisible(true);
+                naiveBayesConfig.setVisible(true);
                 break;
             default: 
                 defaultUnsupervisedConfig.setVisible(true);
@@ -751,6 +814,24 @@ public class JTableTut extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_generateDecisionTreeButtonActionPerformed
+
+    private void generateBayesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateBayesButtonActionPerformed
+       double lambda = Double.parseDouble(lambdaTextField.getText());
+       if (!loaded) {
+            generatedScalaTextArea.setText("Please select a file");
+        }
+        else {
+           if (lambda <= 0) {
+                generatedScalaTextArea.append("LAMBDA VALUE CANNOT BE 0 OR LESS.");
+            }
+           else {
+                int colIndex = columnList.getSelectedIndex(); 
+                String outputFileName = bayesOutputFileText.getText();
+                createFile(colIndex, outputFileName);
+                generateNaiveBayesScalaCode(lambda);
+            }
+       }
+    }//GEN-LAST:event_generateBayesButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -918,11 +999,37 @@ public class JTableTut extends javax.swing.JFrame {
         
         generatedScalaTextArea.setText(generatedCode); 
     }
+    
+    public void generateNaiveBayesScalaCode(double lambda){
+        String generatedCode;
+        String path = outputFile.getAbsolutePath().replaceAll("\\\\", "/");
+        
+        generatedCode = "import org.apache.spark.mllib.classification.{NaiveBayes, NaiveBayesModel}\n" +
+                        "import org.apache.spark.mllib.linalg.Vectors\n" +
+                        "import org.apache.spark.mllib.regression.LabeledPoint\n" +
+                        "\n" +
+                        "val data = sc.textFile(\"" + path + "\")\n" +
+                        "val parsedData = data.map { line =>\n" +
+                        "  val parts = line.split(',')\n" +
+                        "  LabeledPoint(parts(0).toDouble, Vectors.dense(parts(1).split(' ').map(_.toDouble)))\n" +
+                        "}\n" +
+                        "\n" +
+                        "val splits = parsedData.randomSplit(Array(0.6, 0.4), seed = 11L)\n" +
+                        "val training = splits(0)\n" +
+                        "val test = splits(1)\n" +
+                        "\n" +
+                        "val model = NaiveBayes.train(training, lambda = " + lambda + ", modelType = \"multinomial\")\n" +
+                        "\n" +
+                        "val predictionAndLabel = test.map(p => (model.predict(p.features), p.label))\n" +
+                        "val accuracy = 1.0 * predictionAndLabel.filter(x => x._1 == x._2).count() / test.count()\n";
+    }
    
        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel algorithmTab;
+    private javax.swing.JLabel bayesLabel;
+    private javax.swing.JTextField bayesOutputFileText;
     private javax.swing.JButton browseFileExplorerButton;
     private javax.swing.JPanel codeTab;
     private javax.swing.JList<String> columnList;
@@ -933,6 +1040,7 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JPanel defaultUnsupervisedConfig;
     private javax.swing.JFileChooser fileExplorer;
     private javax.swing.JTextField fileNameTextField;
+    private javax.swing.JButton generateBayesButton;
     private javax.swing.JButton generateButton;
     private javax.swing.JButton generateDecisionTreeButton;
     private javax.swing.JTextArea generatedScalaTextArea;
@@ -965,12 +1073,16 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel kmeansConfig;
+    private javax.swing.JLabel lambdaLabel;
+    private javax.swing.JTextField lambdaTextField;
     private javax.swing.JTextField maxBinsTextField;
     private javax.swing.JTextField maxDepthTextField;
+    private javax.swing.JPanel naiveBayesConfig;
     private javax.swing.JTextField numClassesTextField;
     private javax.swing.JTextField numClustersTextField;
     private javax.swing.JTextField numIterationsTextField;
     private javax.swing.JTextField outputFileTextField;
+    private javax.swing.JLabel outputLabel;
     private javax.swing.JButton selectFile;
     private javax.swing.JButton selectSupervisedCardButton;
     private javax.swing.JButton selectUnsupervisedCardButton;
