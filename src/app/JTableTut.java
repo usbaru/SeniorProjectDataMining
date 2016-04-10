@@ -87,6 +87,10 @@ public class JTableTut extends javax.swing.JFrame {
         percentageButton = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         rowNums = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        rowNums2 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        colNums = new javax.swing.JTextField();
         algorithmTab = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         supervisedTab = new javax.swing.JPanel();
@@ -211,6 +215,10 @@ public class JTableTut extends javax.swing.JFrame {
 
         jLabel16.setText("Number of Rows:");
 
+        jLabel17.setText("Number of Rows:");
+
+        jLabel19.setText("Columns Selected:");
+
         javax.swing.GroupLayout sourceTabLayout = new javax.swing.GroupLayout(sourceTab);
         sourceTab.setLayout(sourceTabLayout);
         sourceTabLayout.setHorizontalGroup(
@@ -221,7 +229,7 @@ public class JTableTut extends javax.swing.JFrame {
                     .addGroup(sourceTabLayout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rowNums, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rowNums, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel15)
                         .addGap(18, 18, 18)
@@ -241,13 +249,22 @@ public class JTableTut extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(sourceTabLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel4))
-                    .addComponent(getColumns))
+                    .addComponent(getColumns)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
-                .addGap(23, 23, 23))
+                .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(sourceTabLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+                        .addGap(23, 23, 23))
+                    .addGroup(sourceTabLayout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rowNums2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(colNums, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         sourceTabLayout.setVerticalGroup(
             sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,17 +282,22 @@ public class JTableTut extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(getColumns))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(sourceTabLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
                             .addComponent(rowNums, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(percentageButton)
                             .addComponent(percentageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel17)
+                            .addComponent(rowNums2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19)
+                            .addComponent(colNums, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Source and Datasets", sourceTab);
@@ -1014,6 +1036,7 @@ public class JTableTut extends javax.swing.JFrame {
     
     public void updateRowNums(int numRows) {
         rowNums.setText("" + numRows);
+        rowNums2.setText("" + numRows); 
         
     }
     
@@ -1106,6 +1129,7 @@ public class JTableTut extends javax.swing.JFrame {
             workingTable.getColumnModel().getColumn(columnList[i]).setMaxWidth(200);
             workingTable.getColumnModel().getColumn(columnList[i]).setWidth(50);
         }
+        colNums.setText(columnList.length + "");
     }
     
     
@@ -1204,6 +1228,7 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JTextField bayesOutputFileText;
     private javax.swing.JButton browseFileExplorerButton;
     private javax.swing.JPanel codeTab;
+    private javax.swing.JTextField colNums;
     private javax.swing.JList<String> columnList;
     private javax.swing.JTable csvTable;
     private javax.swing.JPanel decisionTreeConfig;
@@ -1228,7 +1253,9 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -1268,6 +1295,7 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JButton percentageButton;
     private javax.swing.JTextField percentageTextField;
     private javax.swing.JTextField rowNums;
+    private javax.swing.JTextField rowNums2;
     private javax.swing.JButton selectFile;
     private javax.swing.JButton selectSupervisedCardButton;
     private javax.swing.JButton selectUnsupervisedCardButton;
