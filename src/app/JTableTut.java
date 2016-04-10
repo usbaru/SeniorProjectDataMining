@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,15 +79,20 @@ public class JTableTut extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         workingTable = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        columnList = new javax.swing.JList<String>();
+        columnList = new javax.swing.JList<>();
         getColumns = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        percentageTextField = new javax.swing.JTextField();
+        percentageButton = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        rowNums = new javax.swing.JTextField();
         algorithmTab = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         supervisedTab = new javax.swing.JPanel();
         supervisedSelector = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        supervisedComboBox = new javax.swing.JComboBox<String>();
+        supervisedComboBox = new javax.swing.JComboBox<>();
         selectSupervisedCardButton = new javax.swing.JButton();
         supervisedCardConfig = new javax.swing.JPanel();
         defaultSupervisedConfig = new javax.swing.JPanel();
@@ -113,7 +119,6 @@ public class JTableTut extends javax.swing.JFrame {
         lambdaTextField = new javax.swing.JTextField();
         bayesOutputFileText = new javax.swing.JTextField();
         generateBayesButton = new javax.swing.JButton();
-        impurityComboBox = new javax.swing.JComboBox<String>();
         unsupervisedTab = new javax.swing.JPanel();
         unsupervisedCardConfig = new javax.swing.JPanel();
         defaultUnsupervisedConfig = new javax.swing.JPanel();
@@ -127,7 +132,7 @@ public class JTableTut extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         outputFileTextField = new javax.swing.JTextField();
-        generateButton = new javax.swing.JButton();
+        generateKMeansButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         gaussianConfig = new javax.swing.JPanel();
         jLabelGaussian2 = new javax.swing.JLabel();
@@ -139,7 +144,7 @@ public class JTableTut extends javax.swing.JFrame {
         generateButtonGaussian = new javax.swing.JButton();
         unsupervisedSelector = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        unsupervisedComboBox = new javax.swing.JComboBox<String>();
+        unsupervisedComboBox = new javax.swing.JComboBox<>();
         selectUnsupervisedCardButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         codeTab = new javax.swing.JPanel();
@@ -191,7 +196,20 @@ public class JTableTut extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Select Columns");
+        jLabel4.setText("Select Columns:");
+
+        jLabel15.setText("Percentage of Dataset to Load: ");
+
+        percentageTextField.setText("100");
+
+        percentageButton.setText("Apply");
+        percentageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                percentageButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setText("Number of Rows:");
 
         javax.swing.GroupLayout sourceTabLayout = new javax.swing.GroupLayout(sourceTab);
         sourceTab.setLayout(sourceTabLayout);
@@ -199,27 +217,36 @@ public class JTableTut extends javax.swing.JFrame {
             sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sourceTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(sourceTabLayout.createSequentialGroup()
-                            .addComponent(browseFileExplorerButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(sourceTabLayout.createSequentialGroup()
-                            .addGap(677, 677, 677)
-                            .addComponent(selectFile)))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(sourceTabLayout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rowNums, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel15)
                         .addGap(18, 18, 18)
-                        .addComponent(getColumns))
+                        .addComponent(percentageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(percentageButton))
+                    .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(sourceTabLayout.createSequentialGroup()
+                                .addComponent(browseFileExplorerButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(sourceTabLayout.createSequentialGroup()
+                                .addGap(677, 677, 677)
+                                .addComponent(selectFile)))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(sourceTabLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(jLabel4)))
+                        .addComponent(jLabel4))
+                    .addComponent(getColumns))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
                 .addGap(23, 23, 23))
         );
         sourceTabLayout.setVerticalGroup(
@@ -234,17 +261,21 @@ public class JTableTut extends javax.swing.JFrame {
                 .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(sourceTabLayout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(sourceTabLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(sourceTabLayout.createSequentialGroup()
-                                .addGap(220, 220, 220)
-                                .addComponent(getColumns))))
-                    .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(getColumns))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(sourceTabLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(sourceTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(rowNums, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(percentageButton)
+                            .addComponent(percentageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Source and Datasets", sourceTab);
@@ -518,10 +549,10 @@ public class JTableTut extends javax.swing.JFrame {
 
         jLabel5.setText("Output File:");
 
-        generateButton.setText("Generate");
-        generateButton.addActionListener(new java.awt.event.ActionListener() {
+        generateKMeansButton.setText("Generate");
+        generateKMeansButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generateButtonActionPerformed(evt);
+                generateKMeansButtonActionPerformed(evt);
             }
         });
 
@@ -535,7 +566,7 @@ public class JTableTut extends javax.swing.JFrame {
             .addGroup(kmeansConfigLayout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addGroup(kmeansConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(generateButton)
+                    .addComponent(generateKMeansButton)
                     .addGroup(kmeansConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1)
                         .addComponent(jLabel8)
@@ -571,7 +602,7 @@ public class JTableTut extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(outputFileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(generateButton)
+                .addComponent(generateKMeansButton)
                 .addContainerGap(443, Short.MAX_VALUE))
         );
 
@@ -758,14 +789,14 @@ public class JTableTut extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
+    private void generateKMeansButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateKMeansButtonActionPerformed
         int numClusters = Integer.parseInt(numClustersTextField.getText());
         int numIterations = Integer.parseInt(numIterationsTextField.getText());
         if (!loaded) {
             generatedScalaTextArea.setText("Please select a file");
         }
         else {
-            int colIndex = columnList.getSelectedIndex(); 
+            int[] listColumns = columnList.getSelectedIndices();
             if(numClusters <= 0){
                 generatedScalaTextArea.append("NUMBER OF CLUSTERS CANNOT BE 0 OR LESS.");
             }
@@ -774,11 +805,11 @@ public class JTableTut extends javax.swing.JFrame {
             }
             else{
                 String outputFileName = outputFileTextField.getText();
-                createFile(colIndex, outputFileName);
+                createFile(listColumns, outputFileName);
                 generateKMeansScalaCode(numClusters, numIterations);
             }
         }
-    }//GEN-LAST:event_generateButtonActionPerformed
+    }//GEN-LAST:event_generateKMeansButtonActionPerformed
 
     private void getColumnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getColumnsActionPerformed
         int[] listColumns;
@@ -874,9 +905,9 @@ public class JTableTut extends javax.swing.JFrame {
                 generatedScalaTextArea.append("MAX BIN CANNOT BE 0 OR LESS.");
             }
             else {
-                int colIndex = columnList.getSelectedIndex(); 
+                int[] listColumns = columnList.getSelectedIndices();
                 String outputFileName = decisionTreeOutputFileText.getText();
-                createFile(colIndex, outputFileName);
+                createFile(listColumns, outputFileName);
                 generateDecisionTreeScalaCode(numClasses, impurity, maxDepth, maxBins);
             }
         }
@@ -894,9 +925,9 @@ public class JTableTut extends javax.swing.JFrame {
                 generatedScalaTextArea.append("LAMBDA VALUE CANNOT BE 0 OR LESS.");
             }
            else {
-                int colIndex = columnList.getSelectedIndex(); 
+                int[] listColumns = columnList.getSelectedIndices();
                 String outputFileName = bayesOutputFileText.getText();
-                createFile(colIndex, outputFileName);
+                createFile(listColumns, outputFileName);
                 generateNaiveBayesScalaCode(lambda);
             }
        }
@@ -910,13 +941,41 @@ public class JTableTut extends javax.swing.JFrame {
                 generatedScalaTextArea.append("NUMBER OF CLUSTERS CANNOT BE 0 OR LESS.");
             }
             else{
-                int colIndex = columnList.getSelectedIndex();
+                int[] listColumns = columnList.getSelectedIndices();
                 String outputFileName = outputFileTextFieldGaussian.getText();
-                createFile(colIndex, outputFileName);
+                createFile(listColumns, outputFileName);
                 generateGaussianScalaCode(numClusters);
             }
         
     }//GEN-LAST:event_generateButtonGaussianActionPerformed
+
+    private void percentageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_percentageButtonActionPerformed
+        double percentage = Double.parseDouble(percentageTextField.getText()); 
+        
+        if (percentage <= 0 || percentage > 100 ) {
+            System.out.println("Percentage cannot be less than 1 or more than 100"); 
+        }
+        
+        else {
+            Vector<Vector<String>> dataTemp = new Vector<>();
+            dataTemp = data; 
+            Collections.shuffle(dataTemp);
+            percentage = percentage/100; 
+            int numList = (int)Math.round(dataTemp.size() * percentage); 
+            System.out.println("Before: " + dataTemp.size()); 
+            System.out.println(numList);
+            int count = 0; 
+            int removeCount = dataTemp.size() - numList; 
+            while (count != removeCount) {
+                dataTemp.remove(dataTemp.size() - 1);
+                count++; 
+            }
+            System.out.println("After: " + dataTemp.size());
+            updateRowNums(numList); 
+            printColumnData(header, dataTemp);
+            data = dataTemp;
+        }
+    }//GEN-LAST:event_percentageButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -951,6 +1010,11 @@ public class JTableTut extends javax.swing.JFrame {
                 new JTableTut().setVisible(true);
             }
         });
+    }
+    
+    public void updateRowNums(int numRows) {
+        rowNums.setText("" + numRows);
+        
     }
     
     public void saveData(String fileName) {
@@ -988,6 +1052,7 @@ public class JTableTut extends javax.swing.JFrame {
             Logger.getLogger(JTableTut.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        updateRowNums(data.size()); 
         printColumnData(header, data); 
         updateList(header); 
     }
@@ -1009,19 +1074,23 @@ public class JTableTut extends javax.swing.JFrame {
         columnList.setModel(model);
     }
     
-    //not multiple column
-    public void createFile(int colIndex, String outputFileName) {
-        try { 
-            outputFile = new File(outputFileName + ".txt");
+    
+    public void createFile(int[] columnList, String outputFileName) {
+        try {
+            outputFile = new File(outputFileName + ".txt"); 
             PrintWriter writer = new PrintWriter(outputFile); 
-            for(int i = 0; i < data.size(); i++) {
-                writer.println(data.get(i).get(colIndex));
+            for (int i = 0; i < data.size(); i++) {
+                for (int j = 0; j < columnList.length; j++) {
+                    writer.print(data.get(i).get(columnList[j]) + " ");
+                }
+                writer.write("\n"); 
             }
-            writer.close(); 
+            writer.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(JTableTut.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     
     public void loadTableColumns(int[] columnList) {
         printColumnData(header, data);
@@ -1079,8 +1148,8 @@ public class JTableTut extends javax.swing.JFrame {
                     "  (point.label, prediction)\n" +
                     "}\n" + 
                 "val testErr = labelAndPreds.filter(r => r._1 != r._2).count().toDouble / testData.count()\n" +
-"println(\"Test Error = \" + testErr)\n" +
-"println(\"Learned classification tree model:\\n\" + model.toDebugString)\n";
+                "println(\"Test Error = \" + testErr)\n" +
+                "println(\"Learned classification tree model:\\n\" + model.toDebugString)\n";
         
         generatedScalaTextArea.setText(generatedCode); 
     }
@@ -1107,6 +1176,7 @@ public class JTableTut extends javax.swing.JFrame {
                         "\n" +
                         "val predictionAndLabel = test.map(p => (model.predict(p.features), p.label))\n" +
                         "val accuracy = 1.0 * predictionAndLabel.filter(x => x._1 == x._2).count() / test.count()\n";
+        generatedScalaTextArea.setText(generatedCode); 
     }
    
     public void generateGaussianScalaCode(int clu){
@@ -1123,7 +1193,8 @@ public class JTableTut extends javax.swing.JFrame {
                         "println(\"weight=%f\\nmu=%s\\nsigma=\\n%s\\n\" format\n" +
                         "(gmm.weights(i), gmm.gaussians(i).mu, gmm.gaussians(i).sigma))\n" +
                         "}";
-                
+        generatedScalaTextArea.setText(generatedCode); 
+        
     }   
        
 
@@ -1141,11 +1212,11 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JPanel defaultUnsupervisedConfig;
     private javax.swing.JFileChooser fileExplorer;
     private javax.swing.JTextField fileNameTextField;
-    private javax.swing.JButton generateBayesButton;
     private javax.swing.JPanel gaussianConfig;
-    private javax.swing.JButton generateButton;
+    private javax.swing.JButton generateBayesButton;
     private javax.swing.JButton generateButtonGaussian;
     private javax.swing.JButton generateDecisionTreeButton;
+    private javax.swing.JButton generateKMeansButton;
     private javax.swing.JTextArea generatedScalaTextArea;
     private javax.swing.JButton getColumns;
     private javax.swing.JComboBox<String> impurityComboBox;
@@ -1155,6 +1226,8 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -1190,8 +1263,11 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JTextField numClustersTextField;
     private javax.swing.JTextField numIterationsTextField;
     private javax.swing.JTextField outputFileTextField;
-    private javax.swing.JLabel outputLabel;
     private javax.swing.JTextField outputFileTextFieldGaussian;
+    private javax.swing.JLabel outputLabel;
+    private javax.swing.JButton percentageButton;
+    private javax.swing.JTextField percentageTextField;
+    private javax.swing.JTextField rowNums;
     private javax.swing.JButton selectFile;
     private javax.swing.JButton selectSupervisedCardButton;
     private javax.swing.JButton selectUnsupervisedCardButton;
