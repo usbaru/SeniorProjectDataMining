@@ -116,6 +116,16 @@ public class JTableTut extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         maxBinsTextField = new javax.swing.JTextField();
         impurityComboBox = new javax.swing.JComboBox<>();
+        logisticRegressionConfig = new javax.swing.JPanel();
+        naiveBayesConfig1 = new javax.swing.JPanel();
+        bayesLabel1 = new javax.swing.JLabel();
+        logisticRegressionLabe1 = new javax.swing.JLabel();
+        outputLabel1 = new javax.swing.JLabel();
+        logisticRegressionTextField1 = new javax.swing.JTextField();
+        logisticRegressionOutputFileText = new javax.swing.JTextField();
+        generateLogisticRegression = new javax.swing.JButton();
+        logisticRegressionLabe2 = new javax.swing.JLabel();
+        logisticRegressionTextField2 = new javax.swing.JTextField();
         naiveBayesConfig = new javax.swing.JPanel();
         bayesLabel = new javax.swing.JLabel();
         lambdaLabel = new javax.swing.JLabel();
@@ -304,7 +314,7 @@ public class JTableTut extends javax.swing.JFrame {
 
         jLabel10.setText("Select an algorithm:");
 
-        supervisedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Decision Tree", "Naive Bayes", "Supervised2", "Supervised3" }));
+        supervisedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Decision Tree", "Naive Bayes", "Logistic Regression"}));
 
         selectSupervisedCardButton.setText("Select");
         selectSupervisedCardButton.addActionListener(new java.awt.event.ActionListener() {
@@ -453,10 +463,97 @@ public class JTableTut extends javax.swing.JFrame {
                     .addComponent(decisionTreeOutputFileText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(generateDecisionTreeButton)
-                .addContainerGap(364, Short.MAX_VALUE))
+                .addContainerGap(327, Short.MAX_VALUE))
         );
 
         supervisedCardConfig.add(decisionTreeConfig, "card3");
+
+        bayesLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        bayesLabel1.setText("Logistic Regression");
+
+        logisticRegressionLabe1.setText("Number of Classes:");
+
+        outputLabel1.setText("Output File:");
+
+        generateLogisticRegression.setText("Generate");
+        generateLogisticRegression.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateLogisticRegressionActionPerformed(evt);
+            }
+        });
+
+        logisticRegressionLabe2.setText("Split:");
+
+        javax.swing.GroupLayout naiveBayesConfig1Layout = new javax.swing.GroupLayout(naiveBayesConfig1);
+        naiveBayesConfig1.setLayout(naiveBayesConfig1Layout);
+        naiveBayesConfig1Layout.setHorizontalGroup(
+            naiveBayesConfig1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(naiveBayesConfig1Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(naiveBayesConfig1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bayesLabel1)
+                    .addGroup(naiveBayesConfig1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(generateLogisticRegression)
+                        .addGroup(naiveBayesConfig1Layout.createSequentialGroup()
+                            .addGroup(naiveBayesConfig1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, naiveBayesConfig1Layout.createSequentialGroup()
+                                    .addComponent(logisticRegressionLabe1)
+                                    .addGap(27, 27, 27))
+                                .addGroup(naiveBayesConfig1Layout.createSequentialGroup()
+                                    .addGroup(naiveBayesConfig1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(logisticRegressionLabe2)
+                                        .addComponent(outputLabel1))
+                                    .addGap(72, 72, 72)))
+                            .addGroup(naiveBayesConfig1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(logisticRegressionTextField2)
+                                .addComponent(logisticRegressionTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(logisticRegressionOutputFileText)))))
+                .addContainerGap(472, Short.MAX_VALUE))
+        );
+        naiveBayesConfig1Layout.setVerticalGroup(
+            naiveBayesConfig1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(naiveBayesConfig1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(bayesLabel1)
+                .addGap(36, 36, 36)
+                .addGroup(naiveBayesConfig1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logisticRegressionLabe1)
+                    .addComponent(logisticRegressionTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(naiveBayesConfig1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logisticRegressionLabe2)
+                    .addComponent(logisticRegressionTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(naiveBayesConfig1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logisticRegressionOutputFileText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(outputLabel1))
+                .addGap(18, 18, 18)
+                .addComponent(generateLogisticRegression)
+                .addContainerGap(463, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout logisticRegressionConfigLayout = new javax.swing.GroupLayout(logisticRegressionConfig);
+        logisticRegressionConfig.setLayout(logisticRegressionConfigLayout);
+        logisticRegressionConfigLayout.setHorizontalGroup(
+            logisticRegressionConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 873, Short.MAX_VALUE)
+            .addGroup(logisticRegressionConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(logisticRegressionConfigLayout.createSequentialGroup()
+                    .addGap(0, 18, Short.MAX_VALUE)
+                    .addComponent(naiveBayesConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 19, Short.MAX_VALUE)))
+        );
+        logisticRegressionConfigLayout.setVerticalGroup(
+            logisticRegressionConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 697, Short.MAX_VALUE)
+            .addGroup(logisticRegressionConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(logisticRegressionConfigLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(naiveBayesConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        supervisedCardConfig.add(logisticRegressionConfig, "card5");
 
         bayesLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         bayesLabel.setText("Naive Bayes");
@@ -509,7 +606,7 @@ public class JTableTut extends javax.swing.JFrame {
                     .addComponent(bayesOutputFileText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(generateBayesButton)
-                .addContainerGap(487, Short.MAX_VALUE))
+                .addContainerGap(477, Short.MAX_VALUE))
         );
 
         supervisedCardConfig.add(naiveBayesConfig, "card4");
@@ -527,7 +624,7 @@ public class JTableTut extends javax.swing.JFrame {
         supervisedTabLayout.setVerticalGroup(
             supervisedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(supervisedSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(supervisedCardConfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(supervisedCardConfig, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Superivsed Learning", supervisedTab);
@@ -557,7 +654,7 @@ public class JTableTut extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
-                .addContainerGap(618, Short.MAX_VALUE))
+                .addContainerGap(591, Short.MAX_VALUE))
         );
 
         unsupervisedCardConfig.add(defaultUnsupervisedConfig, "card3");
@@ -625,7 +722,7 @@ public class JTableTut extends javax.swing.JFrame {
                     .addComponent(outputFileTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(generateKMeansButton)
-                .addContainerGap(443, Short.MAX_VALUE))
+                .addContainerGap(410, Short.MAX_VALUE))
         );
 
         unsupervisedCardConfig.add(kmeansConfig, "card2");
@@ -685,14 +782,14 @@ public class JTableTut extends javax.swing.JFrame {
                     .addComponent(outputFileTextFieldGaussian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(generateButtonGaussian)
-                .addContainerGap(495, Short.MAX_VALUE))
+                .addContainerGap(460, Short.MAX_VALUE))
         );
 
         unsupervisedCardConfig.add(gaussianConfig, "card4");
 
         jLabel6.setText("Select an algorithm:");
 
-        unsupervisedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "K-Means", "Gaussian Mixutre", "Unsupervised1", "Unsupervised2", "Unsupervised3" }));
+        unsupervisedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "K-Means", "Gaussian Mixutre"}));
 
         selectUnsupervisedCardButton.setText("Select");
         selectUnsupervisedCardButton.addActionListener(new java.awt.event.ActionListener() {
@@ -751,7 +848,7 @@ public class JTableTut extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 722, Short.MAX_VALUE)
+            .addGap(0, 697, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Other", jPanel1);
@@ -903,6 +1000,8 @@ public class JTableTut extends javax.swing.JFrame {
             case 1:
                 naiveBayesConfig.setVisible(true);
                 break;
+            case 2:
+                logisticRegressionConfig.setVisible(true);
             default: 
                 defaultUnsupervisedConfig.setVisible(true);
          }
@@ -998,6 +1097,30 @@ public class JTableTut extends javax.swing.JFrame {
             data = dataTemp;
         }
     }//GEN-LAST:event_percentageButtonActionPerformed
+
+    private void generateLogisticRegressionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateLogisticRegressionActionPerformed
+        int classes = Integer.parseInt(logisticRegressionTextField1.getText());
+        int split = Integer.parseInt(logisticRegressionTextField2.getText());
+        
+        if (!loaded) {
+            generatedScalaTextArea.setText("Please select a file"); 
+        }
+        
+        else {
+            if (classes <= 0) {
+                generatedScalaTextArea.append("NUMBER OF CLASSES CANNOT BE 0 OR LESS.");
+            }
+            else if (split <= 0) {
+                generatedScalaTextArea.append("MAX DEPTH CANNOT BE 0 OR LESS.");
+            }
+            else {
+                int[] listColumns = columnList.getSelectedIndices();
+                String outputFileName = logisticRegressionOutputFileText.getText();
+                createFile(listColumns, outputFileName);
+                generateLogisticRegressionnScalaCode(classes, split);
+            }
+        }
+    }//GEN-LAST:event_generateLogisticRegressionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1220,11 +1343,47 @@ public class JTableTut extends javax.swing.JFrame {
         generatedScalaTextArea.setText(generatedCode); 
         
     }   
+    
+    public void generateLogisticRegressionnScalaCode(int classes, int splits) {
+        String generatedCode; 
+        String path = outputFile.getAbsolutePath().replaceAll("\\\\", "/");
+        
+        generatedCode = "import org.apache.spark.SparkContext\n" +
+                "import org.apache.spark.mllib.classification.{LogisticRegressionWithLBFGS, LogisticRegressionModel}\n" +
+                "import org.apache.spark.mllib.evaluation.MulticlassMetrics\n" +
+                "import org.apache.spark.mllib.regression.LabeledPoint\n" +
+                "import org.apache.spark.mllib.linalg.Vectors\n" +
+                "import org.apache.spark.mllib.util.MLUtils\n\n" +
+
+
+                "val data = MLUtils.loadLibSVMFile(sc, " + path + ")\n\n" +
+                
+                
+                "val splits = data.randomSplit(Array(0.6, 0.4), seed = 11L)\n" +
+                "val training = splits(0).cache()\n" +
+                "val test = splits(" + splits + ")\n\n" +
+                "val model = new LogisticRegressionWithLBFGS()\n" +
+                " .setNumClasses(" + classes + ")\n" +
+                " .run(training)\n\n" +
+               
+                "val predictionAndLabels = test.map { case LabeledPoint(label, features) =>\n" +
+                " val prediction = model.predict(features)\n" +
+                "   (prediction, label)\n" +
+                "}\n\n" +
+                
+                "val metrics = new MulticlassMetrics(predictionAndLabels)\n" +
+                "val precision = metrics.precision\n" +
+                "println(\"Precision = \" + precision)\n";
+   
+        
+        generatedScalaTextArea.setText(generatedCode); 
+    }
        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel algorithmTab;
     private javax.swing.JLabel bayesLabel;
+    private javax.swing.JLabel bayesLabel1;
     private javax.swing.JTextField bayesOutputFileText;
     private javax.swing.JButton browseFileExplorerButton;
     private javax.swing.JPanel codeTab;
@@ -1242,6 +1401,7 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JButton generateButtonGaussian;
     private javax.swing.JButton generateDecisionTreeButton;
     private javax.swing.JButton generateKMeansButton;
+    private javax.swing.JButton generateLogisticRegression;
     private javax.swing.JTextArea generatedScalaTextArea;
     private javax.swing.JButton getColumns;
     private javax.swing.JComboBox<String> impurityComboBox;
@@ -1282,9 +1442,16 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JPanel kmeansConfig;
     private javax.swing.JLabel lambdaLabel;
     private javax.swing.JTextField lambdaTextField;
+    private javax.swing.JPanel logisticRegressionConfig;
+    private javax.swing.JLabel logisticRegressionLabe1;
+    private javax.swing.JLabel logisticRegressionLabe2;
+    private javax.swing.JTextField logisticRegressionOutputFileText;
+    private javax.swing.JTextField logisticRegressionTextField1;
+    private javax.swing.JTextField logisticRegressionTextField2;
     private javax.swing.JTextField maxBinsTextField;
     private javax.swing.JTextField maxDepthTextField;
     private javax.swing.JPanel naiveBayesConfig;
+    private javax.swing.JPanel naiveBayesConfig1;
     private javax.swing.JTextField numClassesTextField;
     private javax.swing.JTextField numClustersGaussian;
     private javax.swing.JTextField numClustersTextField;
@@ -1292,6 +1459,7 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JTextField outputFileTextField;
     private javax.swing.JTextField outputFileTextFieldGaussian;
     private javax.swing.JLabel outputLabel;
+    private javax.swing.JLabel outputLabel1;
     private javax.swing.JButton percentageButton;
     private javax.swing.JTextField percentageTextField;
     private javax.swing.JTextField rowNums;
