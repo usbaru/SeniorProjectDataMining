@@ -945,6 +945,7 @@ public class JTableTut extends javax.swing.JFrame {
             System.out.println("Please select file.");
         } else {
             String fileName = openedFile.getAbsolutePath();
+            percentageTextField.setText("100");
             saveData(fileName);
             loaded = true;
         }
@@ -1078,20 +1079,18 @@ public class JTableTut extends javax.swing.JFrame {
         }
         
         else {
+            saveData(openedFile.getAbsolutePath());
             Vector<Vector<String>> dataTemp = new Vector<>();
             dataTemp = data; 
             Collections.shuffle(dataTemp);
             percentage = percentage/100; 
             int numList = (int)Math.round(dataTemp.size() * percentage); 
-            System.out.println("Before: " + dataTemp.size()); 
-            System.out.println(numList);
             int count = 0; 
             int removeCount = dataTemp.size() - numList; 
             while (count != removeCount) {
                 dataTemp.remove(dataTemp.size() - 1);
                 count++; 
             }
-            System.out.println("After: " + dataTemp.size());
             updateRowNums(numList); 
             printColumnData(header, dataTemp);
             data = dataTemp;
