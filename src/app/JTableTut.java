@@ -168,11 +168,6 @@ public class JTableTut extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         fileNameTextField.setEditable(false);
-        fileNameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileNameTextFieldActionPerformed(evt);
-            }
-        });
 
         browseFileExplorerButton.setText("Browse");
         browseFileExplorerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -967,10 +962,6 @@ public class JTableTut extends javax.swing.JFrame {
             System.out.println("User clicked cancelled");
         }
     }//GEN-LAST:event_browseFileExplorerButtonActionPerformed
-
-    private void fileNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileNameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fileNameTextFieldActionPerformed
 
     private void selectUnsupervisedCardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectUnsupervisedCardButtonActionPerformed
         
