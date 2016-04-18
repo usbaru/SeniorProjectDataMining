@@ -1271,12 +1271,12 @@ public class JTableTut extends javax.swing.JFrame {
         generatedCode = "import org.apache.spark.mllib.tree.DecisionTree\n" +
                 "import org.apache.spark.mllib.tree.model.DecisionTreeModel\n" +
                 "import org.apache.spark.mllib.util.MLUtils\n\n" +
-                "val data = MLUtils.loadLibSVMFile(sc, " + path + ")\n" +
+                "val data = MLUtils.loadLibSVMFile(sc, \"" + path + "\")\n" +
                 "val splits = data.randomSplit(Array(.07, .03))\n" +
                 "val (trainingData, testData) = (splits(0), splits(1))\n\n" +
                 "val numClasses = " + x + "\n" +
                 "val categoricalFeaturesInfo = Map[Int, Int]()\n" +
-                "val impurity = " + imp + "\n" +
+                "val impurity = \"" + imp + "\"\n" +
                 "val maxDepth = " + maxD + "\n" + 
                 "val maxBins = " + maxB + "\n\n" +
                 "val model = DecisionTree.trainClassifier(trainingData, numClasses, categoricalFeaturesInfo,\n" +
