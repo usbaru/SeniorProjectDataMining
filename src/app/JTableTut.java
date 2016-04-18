@@ -50,11 +50,7 @@ public class JTableTut extends javax.swing.JFrame {
        
     }
 
-    
-    
-    
-    
- 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -903,6 +899,12 @@ public class JTableTut extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * This method is called when the user clicks on the Generate Button
+     * on the K-Means configurations page. This method calls the createFile
+     * and generateKMeansScalaCode methods.
+     * @param evt 
+     */
     private void generateKMeansButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateKMeansButtonActionPerformed
         int numClusters = Integer.parseInt(numClustersTextField.getText());
         int numIterations = Integer.parseInt(numIterationsTextField.getText());
@@ -925,6 +927,11 @@ public class JTableTut extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_generateKMeansButtonActionPerformed
 
+    /**
+     * This method gets the selected columns from the column list and display those 
+     * columns in the working table.
+     * @param evt 
+     */
     private void getColumnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getColumnsActionPerformed
         int[] listColumns;
         if(!loaded) {
@@ -935,6 +942,10 @@ public class JTableTut extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_getColumnsActionPerformed
 
+    /**
+     * This method creates the File object. Also, it calls the saveData method.
+     * @param evt 
+     */
     private void selectFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectFileActionPerformed
         if (!loaded) {
             System.out.println("Please select file.");
@@ -946,6 +957,11 @@ public class JTableTut extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_selectFileActionPerformed
 
+    /**
+     * This method opens the the file explorer window when the Browse button
+     * is clicked.
+     * @param evt 
+     */
     private void browseFileExplorerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseFileExplorerButtonActionPerformed
         //fileExplorer.addChoosableFileFilter(new FileNameExtensionFilter("CSV Files", "csv"));
         fileExplorer.setAcceptAllFileFilterUsed(false);
