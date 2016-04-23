@@ -112,6 +112,7 @@ public class JTableTut extends javax.swing.JFrame {
         outputfileLabel1 = new javax.swing.JLabel();
         maxBinsTextField = new javax.swing.JTextField();
         impurityComboBox = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
         logisticRegressionConfig = new javax.swing.JPanel();
         naiveBayesConfig1 = new javax.swing.JPanel();
         bayesLabel1 = new javax.swing.JLabel();
@@ -393,6 +394,8 @@ public class JTableTut extends javax.swing.JFrame {
 
         impurityComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "gini", "variance", "entropy"}));
 
+        jLabel1.setText("* Classes must be labeled from 1 to Number of Classes.");
+
         javax.swing.GroupLayout decisionTreeConfigLayout = new javax.swing.GroupLayout(decisionTreeConfig);
         decisionTreeConfig.setLayout(decisionTreeConfigLayout);
         decisionTreeConfigLayout.setHorizontalGroup(
@@ -400,30 +403,33 @@ public class JTableTut extends javax.swing.JFrame {
             .addGroup(decisionTreeConfigLayout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(generateDecisionTreeButton)
-                        .addGroup(decisionTreeConfigLayout.createSequentialGroup()
-                            .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(classesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(impurityLabel)
-                                .addComponent(binsLabel)
-                                .addComponent(depthLabel)
-                                .addComponent(outputfileLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(decisionTreeConfigLayout.createSequentialGroup()
-                                    .addGap(42, 42, 42)
-                                    .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(maxDepthTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                        .addComponent(numClassesTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                        .addComponent(impurityComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, decisionTreeConfigLayout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(decisionTreeOutputFileText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(maxBinsTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(decisionTreeConfigLayout.createSequentialGroup()
+                        .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(generateDecisionTreeButton)
+                            .addGroup(decisionTreeConfigLayout.createSequentialGroup()
+                                .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(classesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(impurityLabel)
+                                    .addComponent(binsLabel)
+                                    .addComponent(depthLabel)
+                                    .addComponent(outputfileLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(decisionTreeConfigLayout.createSequentialGroup()
+                                        .addGap(42, 42, 42)
+                                        .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(maxDepthTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                            .addComponent(numClassesTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                            .addComponent(impurityComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, decisionTreeConfigLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(decisionTreeOutputFileText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(maxBinsTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1))
                     .addComponent(decisionLabel)
                     .addComponent(configLabel))
-                .addContainerGap(391, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         decisionTreeConfigLayout.setVerticalGroup(
             decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,7 +441,8 @@ public class JTableTut extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numClassesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(classesLabel))
+                    .addComponent(classesLabel)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(decisionTreeConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(impurityLabel)
@@ -1286,25 +1293,54 @@ public class JTableTut extends javax.swing.JFrame {
         
         generatedCode = "import org.apache.spark.mllib.tree.DecisionTree\n" +
                 "import org.apache.spark.mllib.tree.model.DecisionTreeModel\n" +
+                "import org.apache.spark.mllib.linalg.Vectors\n" +
+                "import org.apache.spark.mllib.regression.LabeledPoint\n" +
+                "import org.apache.spark.rdd.RDD\n" + 
+                "import org.apache.spark.mllib.evaluation.MulticlassMetrics" + 
                 "import org.apache.spark.mllib.util.MLUtils\n\n" +
-                "val data = MLUtils.loadLibSVMFile(sc, \"" + path + "\")\n" +
-                "val splits = data.randomSplit(Array(.07, .03))\n" +
-                "val (trainingData, testData) = (splits(0), splits(1))\n\n" +
-                "val numClasses = " + x + "\n" +
-                "val categoricalFeaturesInfo = Map[Int, Int]()\n" +
+                
+                "val rawData = sc.textFile(\"" + path + "\")\n" + 
+                "val data = rawData.map{ line =>\n" +
+                "   val values = line.split(' ').map(_.toDouble)\n" + 
+                "   val featureVector = Vectors.dense(values.init)\n" + 
+                "   val label = values.last -1\n" + 
+                "   LabeledPoint(label, featureVector)\n" +
+                "}\n\n" +
+                
+                "val Array(trainData, cvData, testData) = data.randomSplit(Array(.08,.01,.01))\n" +
+                "trainData.cache()\n" +
+                "cvData.cache()\n" +
+                "testData.cache()\n\n" +
+                
+                "val numClasses = " + x + "\n" + 
                 "val impurity = \"" + imp + "\"\n" +
+                "val categoricalFeaturesInfo =  Map[Int,Int]()\n" +
                 "val maxDepth = " + maxD + "\n" + 
                 "val maxBins = " + maxB + "\n\n" +
-                "val model = DecisionTree.trainClassifier(trainingData, numClasses, categoricalFeaturesInfo,\n" +
-                    "  impurity, maxDepth, maxBins)\n" +
-                "val labelAndPreds = testData.map { point =>\n" +
-                    "  val prediction = model.predict(point.features)\n" +
-                    "  (point.label, prediction)\n" +
-                    "}\n" + 
-                "val testErr = labelAndPreds.filter(r => r._1 != r._2).count().toDouble / testData.count()\n" +
-                "println(\"Test Error = \" + testErr)\n" +
-                "println(\"Learned classification tree model:\\n\" + model.toDebugString)\n";
-        
+                
+                "val model = DecisionTree.trainClassifier(trainData, numClasses, categoricalFeaturesInfo, impurity, maxDepth, maxBins)\n" +
+                "def getMetrics(model: DecisionTreeModel, data: RDD[LabeledPoint]): MulticlassMetrics = {\n" +
+                "    val predictionsAndLabels = data.map(example =>\n" +
+                "      (model.predict(example.features), example.label)\n" +
+                "    )\n" +
+                "    new MulticlassMetrics(predictionsAndLabels)\n" +
+                "}\n" +
+                "\n" +
+                
+                "val metrics = getMetrics(model, cvData)\n\n" +
+                
+                "def classProbabilities(data: RDD[LabeledPoint]): Array[Double] = {\n" +
+                "    val countsByCategory = data.map(_.label).countByValue()\n" +
+                "    val counts = countsByCategory.toArray.sortBy(_._1).map(_._2)\n" +
+                "    counts.map(_.toDouble / counts.sum)\n" +
+                "}\n" +
+                "\n" +
+                
+                "val trainPriorProbabilities = classProbabilities(trainData)\n" +
+                "val cvPriorProbabilities = classProbabilities(cvData)\n" +
+                "trainPriorProbabilities.zip(cvPriorProbabilities).map {\n" +
+                "   case(trainProb, cvProb) => trainProb * cvProb\n" +
+                "}.sum\n";
         generatedScalaTextArea.setText(generatedCode);
         parentTabbedPane.setSelectedIndex(2);
     }
@@ -1319,7 +1355,7 @@ public class JTableTut extends javax.swing.JFrame {
                         "\n" +
                         "val data = sc.textFile(\"" + path + "\")\n" +
                         "val parsedData = data.map { line =>\n" +
-                        "  val parts = line.split(',')\n" +
+                        "  val parts = line.split(' ')\n" +
                         "  LabeledPoint(parts(0).toDouble, Vectors.dense(parts(1).split(' ').map(_.toDouble)))\n" +
                         "}\n" +
                         "\n" +
@@ -1341,9 +1377,9 @@ public class JTableTut extends javax.swing.JFrame {
         
         generatedCode = "import org.apache.spark.mllib.clustering.GaussianMixture\n" +
                         "import org.apache.spark.mllib.clustering.GaussianMixtureModel\n" +
-                        "import org.apache.spark.mllib.linalg.Vectors\n" +
+                        "import org.apache.spark.mllib.linalg.Vectors\n\n" +
                         "val data = sc.textFile(\"" + path + "\")\n" +
-                        "val parsedData = data.map(s => Vectors.dense(s.trim.split(' ').map(_.toDouble))).cache()\n" +
+                        "val parsedData = data.map(s => Vectors.dense(s.trim.split(' ').map(_.toDouble))).cache()\n\n" +
                         "val gmm = new GaussianMixture().setK(" + clu + ").run(parsedData)\n" +
                         "for (i <- 0 until gmm.k) {\n" +
                         "println(\"weight=%f\\nmu=%s\\nsigma=\\n%s\\n\" format\n" +
@@ -1351,7 +1387,6 @@ public class JTableTut extends javax.swing.JFrame {
                         "}";
         generatedScalaTextArea.setText(generatedCode);
         parentTabbedPane.setSelectedIndex(2);
-        
     }   
     
     public void generateLogisticRegressionnScalaCode(int classes, int splits) {
@@ -1365,8 +1400,7 @@ public class JTableTut extends javax.swing.JFrame {
                 "import org.apache.spark.mllib.linalg.Vectors\n" +
                 "import org.apache.spark.mllib.util.MLUtils\n\n" +
 
-
-                "val data = MLUtils.loadLibSVMFile(sc, " + path + ")\n\n" +
+                "val data = sc.textFile(\"" + path + "\")\n" +
                 
                 
                 "val splits = data.randomSplit(Array(0.6, 0.4), seed = 11L)\n" +
@@ -1384,7 +1418,6 @@ public class JTableTut extends javax.swing.JFrame {
                 "val metrics = new MulticlassMetrics(predictionAndLabels)\n" +
                 "val precision = metrics.precision\n" +
                 "println(\"Precision = \" + precision)\n";
-   
         
         generatedScalaTextArea.setText(generatedCode);
         parentTabbedPane.setSelectedIndex(2);
@@ -1430,6 +1463,7 @@ public class JTableTut extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> impurityComboBox;
     private javax.swing.JLabel impurityLabel;
     private javax.swing.JLabel iterationsLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelGaussian1;
     private javax.swing.JLabel jLabelGaussian2;
