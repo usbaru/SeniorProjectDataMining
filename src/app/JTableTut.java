@@ -1296,7 +1296,7 @@ public class JTableTut extends javax.swing.JFrame {
                 "import org.apache.spark.mllib.linalg.Vectors\n" +
                 "import org.apache.spark.mllib.regression.LabeledPoint\n" +
                 "import org.apache.spark.rdd.RDD\n" + 
-                "import org.apache.spark.mllib.evaluation.MulticlassMetrics" + 
+                "import org.apache.spark.mllib.evaluation.MulticlassMetrics\n" + 
                 "import org.apache.spark.mllib.util.MLUtils\n\n" +
                 
                 "val rawData = sc.textFile(\"" + path + "\")\n" + 
